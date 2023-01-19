@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import cast
 
-from cosmology.api import CosmologyAPIConformant, CosmologyAPINamespace
+from cosmology.api import CosmologyAPIConformantWrapper, CosmologyAPINamespace
 
 import astropy.cosmology as astropy_cosmology
 
@@ -13,7 +13,7 @@ __all__: list[str] = []
 
 
 @dataclass(frozen=True)
-class AstropyCosmology(CosmologyAPIConformant):
+class AstropyCosmology(CosmologyAPIConformantWrapper):
     """The Cosmology API wrapper for :mod:`astropy.cosmology.Cosmology`."""
 
     cosmo: astropy_cosmology.Cosmology
