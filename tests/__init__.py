@@ -1,1 +1,1 @@
-"""Test the Cosmology API astropy compatability library."""
+"""Tests for the Cosmology API compatability wrapper for Astropy."""
