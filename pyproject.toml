@@ -147,7 +147,7 @@ ignore = [
 ]
 
 [tool.ruff.per-file-ignores]
-"test_*.py" = ["ANN", "D", "N801", "S101"]
+"test_*.py" = ["ANN", "D", "N801", "N806", "S101"]
 
 [tool.ruff.isort]
 known-first-party = [

@@ -186,6 +186,10 @@ class AstropyFLRW(AstropyCosmology, FLRWAPIConformantWrapper):
         """Redshift-dependenct scale factor :math:`a = a_0 / (1 + z)`."""
         return np.asarray(self.cosmo.scale_factor(z))
 
+    def Tcmb(self, z: NDFloating | Quantity, /) -> Quantity:
+        """CMB background temperature in K."""
+        return self.cosmo.Tcmb(z).to(u.K)
+
     # ----------------------------------------------
     # Hubble
 
@@ -401,15 +405,6 @@ class AstropyFLRW(AstropyCosmology, FLRWAPIConformantWrapper):
 
         This is the distance to use when converting between the bolometric flux
         from an object at redshift ``z`` and its bolometric luminosity [1]_.
-
-        Parameters
-        ----------
-        z : Array
-            Input redshift.
-
-        Returns
-        -------
-        Array
 
         References
         ----------
