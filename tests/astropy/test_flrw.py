@@ -33,3 +33,14 @@ class Test_AstropyFLRW(Test_AstropyCosmology):
 
     # =========================================================================
     # FLRW API Tests
+
+    @pytest.mark.parametrize(
+        "attr",
+        ["H0", "Om0", "Ode0", "Ok0", "Tcmb0", "Neff", "Ob0", "Ogamma0"],
+        # TODO: more attributes
+    )
+    def test_matching_attributes(self, wrapper, cosmo, attr):
+        """Test that the wrapper has the same attributes as the wrapped object."""
+        assert getattr(wrapper, attr) == getattr(cosmo, attr)
+
+    # TODO: changed attributes: "m_nu",
