@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING, Any
 
 import numpy as np
-from cosmology.api import FLRWAPIConformantWrapper
+from cosmology.api import FLRWCosmologyWrapperAPI
 from cosmology.compat.astropy.core import AstropyCosmology
 from typing_extensions import TypeAlias
 
@@ -31,7 +31,7 @@ _MPC3_SR_UNITS = _MPC3_UNITS / u.sr
 
 
 @dataclass(frozen=True)
-class AstropyFLRW(AstropyCosmology, FLRWAPIConformantWrapper):
+class AstropyFLRW(AstropyCosmology, FLRWCosmologyWrapperAPI):
     """The Cosmology API wrapper for :mod:`astropy.cosmology.Cosmology`."""
 
     cosmo: astropy_cosmology.FLRW
@@ -275,7 +275,6 @@ class AstropyFLRW(AstropyCosmology, FLRWAPIConformantWrapper):
         redshift. Note that this includes their kinetic energy (if
         they have mass), so it is not equal to the commonly used :math:`\sum
         \frac{m_{\nu}}{94 eV}`, which does not include kinetic energy.
-        Returns `float` if the input is scalar.
         """
         return np.asarray(self.cosmo.Onu(z))
 

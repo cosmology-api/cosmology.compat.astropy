@@ -5,7 +5,7 @@ from __future__ import annotations
 import astropy.units as u
 import numpy as np
 import pytest
-from cosmology.api import FLRWAPIConformant, FLRWAPIConformantWrapper
+from cosmology.api import FLRWCosmologyAPI, FLRWCosmologyWrapperAPI
 from cosmology.compat.astropy import AstropyFLRW
 from hypothesis import given
 from hypothesis.extra import numpy as npst
@@ -39,11 +39,11 @@ class Test_AstropyFLRW(Test_AstropyCosmology):
     # Tests
 
     def test_wrapper_is_compliant(self, wrapper):
-        """Test that AstropyCosmology is a FLRWAPIConformantWrapper."""
+        """Test that AstropyCosmology is a FLRWCosmologyWrapperAPI."""
         super().test_wrapper_is_compliant(wrapper)
 
-        assert isinstance(wrapper, FLRWAPIConformant)
-        assert isinstance(wrapper, FLRWAPIConformantWrapper)
+        assert isinstance(wrapper, FLRWCosmologyAPI)
+        assert isinstance(wrapper, FLRWCosmologyWrapperAPI)
 
     def test_getattr(self, wrapper, cosmo):
         """Test that the wrapper can access the attributes of the wrapped object."""
