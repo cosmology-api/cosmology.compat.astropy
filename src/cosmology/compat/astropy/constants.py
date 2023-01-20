@@ -8,8 +8,10 @@ From the :mod:`cosmology.api`, the list of required constants is:
 """
 
 from astropy.constants import G as _G
+from astropy.constants import c as _c
 
 __all__ = ["G"]
 
 
 G = _G.to("pc km2 / (Msun s2)")
+speed_of_light = _c.to("km / s")

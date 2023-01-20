@@ -43,7 +43,7 @@ class AstropyCosmology(CosmologyAPIConformantWrapper):
         `CosmologyAPINamespace`
             An object representing the Astropy cosmology API namespace.
         """
-        import cosmology.compat.astropy  # type: ignore[import]
+        import cosmology.compat.astropy
 
         return cast("CosmologyAPINamespace", cosmology.compat.astropy)
 
