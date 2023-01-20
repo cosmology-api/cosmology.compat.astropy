@@ -24,6 +24,7 @@
   dependencies = [
     "cosmology.api @ git+https://github.com/python-cosmology/cosmology-api.git",
     "astropy>=5.0",
+    "scipy>=1.5",
     "typing_extensions>=3.7.4.2",
   ]
 
