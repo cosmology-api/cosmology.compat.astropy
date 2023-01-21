@@ -2,6 +2,7 @@
 
 import astropy.cosmology as apycosmo
 import pytest
+
 from cosmology.api import CosmologyAPI, CosmologyWrapperAPI
 from cosmology.compat.astropy import AstropyCosmology
 

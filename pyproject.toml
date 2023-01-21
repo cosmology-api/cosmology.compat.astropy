@@ -151,7 +151,11 @@ ignore = [
 "test_*.py" = ["ANN", "D", "N801", "N806", "S101"]
 
 [tool.ruff.isort]
+known-third-party = [
+  "astropy",
+  "numpy",
+  "scipy",
+]
 known-first-party = [
-  "cosmology.api",
-  "cosmology.compat.astropy",
+  "cosmology",
 ]
