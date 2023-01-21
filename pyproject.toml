@@ -22,7 +22,7 @@
     "Programming Language :: Python :: 3",
   ]
   dependencies = [
-    "cosmology.api @ git+https://github.com/python-cosmology/cosmology-api.git",
+    "cosmology.api @ git+https://github.com/cosmology-api/cosmology-api.git",
     "astropy>=5.0",
     "scipy>=1.5",
     "typing_extensions>=3.7.4.2",
@@ -50,9 +50,9 @@
   ]
 
 [project.urls]
-  homepage = "https://cosmology.readthedocs.org/core"
-  repository = "https://github.com/python-cosmology/cosmology-core"
-  documentation = "https://cosmology.readthedocs.org/core"
+  homepage = "https://cosmology.readthedocs.org/astropy"
+  repository = "https://github.com/cosmology-api/cosmology-compat-astropy"
+  documentation = "https://cosmology.readthedocs.org/astropy"
 
 
 [build-system]
