@@ -13,12 +13,16 @@ There are the following required objects for a Cosmology-API compatible library:
   :mod:`cosmology.compat.astropy.constants` for details.
 """
 
-from . import constants
-from .core import AstropyCosmology
+from cosmology.compat.astropy import constants
+from cosmology.compat.astropy.background import AstropyBackgroundCosmology
+from cosmology.compat.astropy.core import AstropyCosmology
+from cosmology.compat.astropy.standard import AstropyStandardCosmology
 
 __all__ = [
     # Cosmology API
     "constants",
     # Wrappers
     "AstropyCosmology",
+    "AstropyBackgroundCosmology",
+    "AstropyStandardCosmology",
 ]

@@ -3,17 +3,29 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import cast
-
-from cosmology.api import CosmologyAPIConformantWrapper, CosmologyAPINamespace
+from typing import Any, cast
 
 import astropy.cosmology as astropy_cosmology
+from numpy import floating
+from numpy.typing import NDArray
+from typing_extensions import TypeAlias
+
+from cosmology.api import CosmologyAPINamespace, CosmologyWrapperAPI
 
 __all__: list[str] = []
 
 
+################################################################################
+# PARAMETERS
+
+NDFloating: TypeAlias = NDArray[floating[Any]]
+
+
+################################################################################
+
+
 @dataclass(frozen=True)
-class AstropyCosmology(CosmologyAPIConformantWrapper):
+class AstropyCosmology(CosmologyWrapperAPI[NDFloating]):
     """The Cosmology API wrapper for :mod:`astropy.cosmology.Cosmology`."""
 
     cosmo: astropy_cosmology.Cosmology
@@ -43,7 +55,7 @@ class AstropyCosmology(CosmologyAPIConformantWrapper):
         `CosmologyAPINamespace`
             An object representing the Astropy cosmology API namespace.
         """
-        import cosmology.compat.astropy  # type: ignore[import]
+        import cosmology.compat.astropy
 
         return cast("CosmologyAPINamespace", cosmology.compat.astropy)
 
