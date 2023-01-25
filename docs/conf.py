@@ -88,6 +88,9 @@ autoclass_content = "both"
 # be used globally.
 rst_epilog = """
 .. |author| replace:: {author}
+
+.. _Python: http://www.python.org
+.. _Astropy: https://www.astropy.org
 """
 
 intersphinx_mapping = {
