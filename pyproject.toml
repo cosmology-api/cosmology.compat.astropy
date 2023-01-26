@@ -38,9 +38,11 @@
     "pytest-astropy",
   ]
   docs = [
+    "furo",
     "graphviz",
     "IPython",
     "jupyter_client",
+    "matplotlib",
     "nbsphinx",
     "pydata-sphinx-theme",
     "sphinx",
@@ -131,6 +133,10 @@ where = ["src"]
     module="numpy.*"
     ignore_missing_imports = true
 
+  [[tool.mypy.overrides]]
+    module="tomli.*"
+    ignore_missing_imports = true
+
 
 [tool.ruff]
 target-version = "py39"
@@ -149,6 +155,7 @@ ignore = [
 
 [tool.ruff.per-file-ignores]
 "test_*.py" = ["ANN", "D", "N801", "N806", "S101"]
+"docs/*.py" = ["INP001"]
 
 [tool.ruff.isort]
 known-third-party = [
