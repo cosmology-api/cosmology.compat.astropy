@@ -65,6 +65,7 @@ extensions = [
     "matplotlib.sphinxext.plot_directive",
     "numpydoc",
     "pytest_doctestplus.sphinx.doctestplus",
+    "subprojecttoctree",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -133,6 +134,13 @@ html_theme = "furo"
 html_static_path = ["_static"]
 
 
+# -- matplotlib extension ----------------------------------------------------
+
+plot_include_source = True
+plot_html_show_source_link = False
+plot_html_show_formats = False
+
+
 # -- numpydoc extension -----------------------------------------------------
 
 numpydoc_use_plots = True
@@ -158,8 +166,7 @@ numpydoc_xref_ignore = {
 }
 
 
-# -- matplotlib extension ----------------------------------------------------
+# -- subprojecttoctree extension --------------------------------------------
 
-plot_include_source = True
-plot_html_show_source_link = False
-plot_html_show_formats = False
+is_subproject = True
+readthedocs_url = "https://cosmology.readthedocs.io/"
