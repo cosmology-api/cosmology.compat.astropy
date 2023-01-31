@@ -3,14 +3,19 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import TYPE_CHECKING
 
-import astropy.cosmology as astropy_cosmology
 import astropy.units as u
 import numpy as np
 from astropy.units import Quantity
 
 from cosmology.api import BackgroundCosmologyWrapperAPI
-from cosmology.compat.astropy.core import AstropyCosmology, NDFloating
+from cosmology.compat.astropy.core import AstropyCosmology
+
+if TYPE_CHECKING:
+    import astropy.cosmology as astropy_cosmology
+
+    from cosmology.compat.astropy.core import NDFloating
 
 __all__: list[str] = []
 
@@ -29,7 +34,7 @@ _MPC3_SR_UNITS = _MPC3_UNITS / u.sr
 @dataclass(frozen=True)
 class AstropyBackgroundCosmology(
     AstropyCosmology,
-    BackgroundCosmologyWrapperAPI[NDFloating],
+    BackgroundCosmologyWrapperAPI["NDFloating"],
 ):
     """The Cosmology API wrapper for :mod:`astropy.cosmology.Cosmology`."""
 
