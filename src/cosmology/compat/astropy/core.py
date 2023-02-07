@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Any, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 from cosmology.api import CosmologyAPINamespace, CosmologyWrapperAPI
 
@@ -60,4 +60,4 @@ class AstropyCosmology(CosmologyWrapperAPI["NDFloating"]):
     @property
     def name(self) -> str | None:
         """The name of the cosmology instance."""
-        return cast(str | None, self.cosmo.name)
+        return cast(Union[str, None], self.cosmo.name)
