@@ -55,9 +55,9 @@ class AstropyCosmology(CosmologyWrapperAPI["NDFloating"]):
         """
         import cosmology.compat.astropy
 
-        return cast("CosmologyAPINamespace", cosmology.compat.astropy)
+        return cast(CosmologyAPINamespace, cosmology.compat.astropy)
 
     @property
     def name(self) -> str | None:
         """The name of the cosmology instance."""
-        return cast("str | None", self.cosmo.name)
+        return cast(str | None, self.cosmo.name)

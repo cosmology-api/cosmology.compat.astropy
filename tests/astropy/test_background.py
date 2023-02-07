@@ -16,6 +16,7 @@ from .test_core import Test_AstropyCosmology
 ################################################################################
 # PARAMETERS
 
+
 # Hypothesis strategy for generating arrays of redshifts
 def z_arr_st(*, allow_nan: bool = False, min_value: float | None = 0, **kwargs):
     return npst.arrays(
