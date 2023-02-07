@@ -61,26 +61,26 @@ class AstropyBackgroundCosmology(
     # ==============================================================
     # Methods
 
-    def scale_factor(self, z: NDFloating | Quantity, /) -> NDFloating:
+    def scale_factor(self, z: NDFloating | Quantity | float, /) -> NDFloating:
         """Redshift-dependenct scale factor :math:`a = a_0 / (1 + z)`."""
         return np.asarray(self.cosmo.scale_factor(z))
 
-    def Otot(self, z: NDFloating | Quantity, /) -> NDFloating:
+    def Otot(self, z: NDFloating | Quantity | float, /) -> NDFloating:
         """Redshift-dependent total density parameter."""
         return np.asarray(self.cosmo.Otot(z))
 
-    def critical_density(self, z: NDFloating | Quantity, /) -> Quantity:
+    def critical_density(self, z: NDFloating | Quantity | float, /) -> Quantity:
         """Redshift-dependent critical density in Msol Mpc-3."""
         return self.cosmo.critical_density(z).to(_RHO_UNITS)
 
     # ----------------------------------------------
     # Time
 
-    def age(self, z: NDFloating | Quantity, /) -> Quantity:
+    def age(self, z: NDFloating | Quantity | float, /) -> Quantity:
         """Age of the universe in Gyr at redshift ``z``."""
         return self.cosmo.age(z).to(u.Gyr)
 
-    def lookback_time(self, z: NDFloating | Quantity, /) -> Quantity:
+    def lookback_time(self, z: NDFloating | Quantity | float, /) -> Quantity:
         """Lookback time to redshift ``z`` in Gyr.
 
         The lookback time is the difference between the age of the Universe now
@@ -91,7 +91,7 @@ class AstropyBackgroundCosmology(
     # ----------------------------------------------
     # Comoving distance
 
-    def comoving_distance(self, z: NDFloating | Quantity, /) -> Quantity:
+    def comoving_distance(self, z: NDFloating | Quantity | float, /) -> Quantity:
         r"""Comoving line-of-sight distance :math:`d_c(z)` in Mpc.
 
         The comoving distance along the line-of-sight between two objects
@@ -99,7 +99,11 @@ class AstropyBackgroundCosmology(
         """
         return self.cosmo.comoving_distance(z).to(u.Mpc)
 
-    def comoving_transverse_distance(self, z: NDFloating | Quantity, /) -> Quantity:
+    def comoving_transverse_distance(
+        self,
+        z: NDFloating | Quantity | float,
+        /,
+    ) -> Quantity:
         r"""Transverse comoving distance :math:`d_M(z)` in Mpc.
 
         This value is the transverse comoving distance at redshift ``z``
@@ -109,7 +113,7 @@ class AstropyBackgroundCosmology(
         """
         return self.cosmo.comoving_transverse_distance(z).to(u.Mpc)
 
-    def comoving_volume(self, z: NDFloating | Quantity, /) -> Quantity:
+    def comoving_volume(self, z: NDFloating | Quantity | float, /) -> Quantity:
         r"""Comoving volume in cubic Mpc.
 
         This is the volume of the universe encompassed by redshifts less than
@@ -118,7 +122,11 @@ class AstropyBackgroundCosmology(
         """
         return self.cosmo.comoving_volume(z).to(_MPC3_UNITS)
 
-    def differential_comoving_volume(self, z: NDFloating | Quantity, /) -> Quantity:
+    def differential_comoving_volume(
+        self,
+        z: NDFloating | Quantity | float,
+        /,
+    ) -> Quantity:
         r"""Differential comoving volume in cubic Mpc per steradian.
 
         If :math:`V_c` is the comoving volume of a redshift slice with solid
@@ -137,7 +145,11 @@ class AstropyBackgroundCosmology(
     # ----------------------------------------------
     # Angular diameter distance
 
-    def angular_diameter_distance(self, z: NDFloating | Quantity, /) -> Quantity:
+    def angular_diameter_distance(
+        self,
+        z: NDFloating | Quantity | float,
+        /,
+    ) -> Quantity:
         """Angular diameter distance :math:`d_A(z)` in Mpc.
 
         This gives the proper (sometimes called 'physical') transverse
@@ -155,7 +167,7 @@ class AstropyBackgroundCosmology(
     # ----------------------------------------------
     # Luminosity distance
 
-    def luminosity_distance(self, z: NDFloating | Quantity, /) -> Quantity:
+    def luminosity_distance(self, z: NDFloating | Quantity | float, /) -> Quantity:
         """Redshift-dependent luminosity distance in Mpc.
 
         This is the distance to use when converting between the bolometric flux

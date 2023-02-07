@@ -139,29 +139,29 @@ class AstropyStandardCosmology(
     # ==============================================================
     # Methods
 
-    def Tcmb(self, z: NDFloating | Quantity, /) -> Quantity:
+    def Tcmb(self, z: NDFloating | Quantity | float, /) -> Quantity:
         """CMB background temperature in K."""
         return self.cosmo.Tcmb(z).to(u.K)
 
     # ----------------------------------------------
     # Hubble
 
-    def H(self, z: NDFloating | Quantity, /) -> Quantity:
+    def H(self, z: NDFloating | Quantity | float, /) -> Quantity:
         """Hubble function :math:`H(z)` in km s-1 Mpc-1."""  # noqa: D402
         return self.cosmo.H(z).to(_H0_UNITS)
 
-    def efunc(self, z: NDFloating | Quantity, /) -> NDFloating:
+    def efunc(self, z: NDFloating | Quantity | float, /) -> NDFloating:
         """Standardised Hubble function :math:`E(z) = H(z)/H_0`."""
         return np.asarray(self.cosmo.efunc(z))
 
-    def inv_efunc(self, z: NDFloating | Quantity, /) -> NDFloating:
+    def inv_efunc(self, z: NDFloating | Quantity | float, /) -> NDFloating:
         """Inverse of ``efunc``."""
         return np.asarray(self.cosmo.inv_efunc(z))
 
     # ----------------------------------------------
     # Omega
 
-    def Otot(self, z: NDFloating | Quantity, /) -> NDFloating:
+    def Otot(self, z: NDFloating | Quantity | float, /) -> NDFloating:
         r"""Redshift-dependent total density parameter.
 
         This is the sum of the matter, radiation, neutrino, dark energy, and
@@ -174,7 +174,7 @@ class AstropyStandardCosmology(
         """
         return np.asarray(self.cosmo.Otot(z))
 
-    def Om(self, z: NDFloating | Quantity, /) -> NDFloating:
+    def Om(self, z: NDFloating | Quantity | float, /) -> NDFloating:
         """Redshift-dependent non-relativistic matter density parameter.
 
         Notes
@@ -184,14 +184,14 @@ class AstropyStandardCosmology(
         """
         return np.asarray(self.cosmo.Om(z))
 
-    def Ob(self, z: NDFloating | Quantity, /) -> NDFloating:
+    def Ob(self, z: NDFloating | Quantity | float, /) -> NDFloating:
         """Redshift-dependent baryon density parameter."""
         try:
             return np.asarray(self.cosmo.Ob(z))
         except ValueError:
             return np.asarray(np.zeros_like(z))
 
-    def Odm(self, z: NDFloating | Quantity, /) -> NDFloating:
+    def Odm(self, z: NDFloating | Quantity | float, /) -> NDFloating:
         """Redshift-dependent dark matter density parameter.
 
         Notes
@@ -204,19 +204,19 @@ class AstropyStandardCosmology(
         except ValueError:
             return np.asarray(self.cosmo.Om(z))
 
-    def Ok(self, z: NDFloating | Quantity, /) -> NDFloating:
+    def Ok(self, z: NDFloating | Quantity | float, /) -> NDFloating:
         """Redshift-dependent curvature density parameter."""
         return np.asarray(self.cosmo.Ok(z))
 
-    def Ode(self, z: NDFloating | Quantity, /) -> NDFloating:
+    def Ode(self, z: NDFloating | Quantity | float, /) -> NDFloating:
         """Redshift-dependent dark energy density parameter."""
         return np.asarray(self.cosmo.Ode(z))
 
-    def Ogamma(self, z: NDFloating | Quantity, /) -> NDFloating:
+    def Ogamma(self, z: NDFloating | Quantity | float, /) -> NDFloating:
         """Redshift-dependent photon density parameter."""
         return np.asarray(self.cosmo.Ogamma(z))
 
-    def Onu(self, z: NDFloating | Quantity, /) -> NDFloating:
+    def Onu(self, z: NDFloating | Quantity | float, /) -> NDFloating:
         r"""Redshift-dependent neutrino density parameter.
 
         The energy density of neutrinos relative to the critical density at each
@@ -229,6 +229,6 @@ class AstropyStandardCosmology(
     # ----------------------------------------------
     # Rho
 
-    def critical_density(self, z: NDFloating | Quantity, /) -> Quantity:
+    def critical_density(self, z: NDFloating | Quantity | float, /) -> Quantity:
         """Redshift-dependent critical density in Msol Mpc-3."""
         return self.cosmo.critical_density(z).to(_RHO_UNITS)
