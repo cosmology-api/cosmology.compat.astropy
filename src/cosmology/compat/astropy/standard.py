@@ -9,7 +9,7 @@ import astropy.units as u
 import numpy as np
 from astropy.units import Quantity
 
-from cosmology.api import BackgroundCosmologyWrapperAPI
+from cosmology.api import StandardCosmologyWrapperAPI
 from cosmology.compat.astropy.background import AstropyBackgroundCosmology
 
 if TYPE_CHECKING:
@@ -26,7 +26,6 @@ __all__: list[str] = []
 _H0_UNITS = u.km / u.s / u.Mpc
 _RHO_UNITS = u.solMass / u.Mpc**3
 _MPC3_UNITS = u.Mpc**3
-_MPC3_SR_UNITS = _MPC3_UNITS / u.sr
 
 
 ################################################################################
@@ -35,7 +34,7 @@ _MPC3_SR_UNITS = _MPC3_UNITS / u.sr
 @dataclass(frozen=True)
 class AstropyStandardCosmology(
     AstropyBackgroundCosmology,
-    BackgroundCosmologyWrapperAPI["NDFloating"],
+    StandardCosmologyWrapperAPI["NDFloating"],
 ):
     """The Cosmology API wrapper for :mod:`astropy.cosmology.Cosmology`."""
 
