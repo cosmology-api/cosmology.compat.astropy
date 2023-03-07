@@ -12,8 +12,8 @@ __all__: list[str] = []
 
 if TYPE_CHECKING:
     import astropy.cosmology as astropy_cosmology
-    from numpy import floating  # noqa: TCH004
-    from numpy.typing import NDArray  # noqa: TCH004
+    from numpy import floating
+    from numpy.typing import NDArray
     from typing_extensions import TypeAlias
 
     NDFloating: TypeAlias = NDArray[floating[Any]]
