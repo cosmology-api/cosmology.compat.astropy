@@ -25,10 +25,12 @@ class Test_AstropyCosmology:
 
     def test_wrapper_is_compliant(self, wrapper):
         """Test that AstropyCosmology is a CosmologyWrapper."""
-        assert isinstance(wrapper, CosmologyAPI)
+        if hasattr(super(), "test_wrapper_is_compliant"):
+            super().test_wrapper_is_compliant(wrapper)
+
+        assert isinstance(wrapper, Cosmology)
         assert isinstance(wrapper, CosmologyWrapper)
 
     def test_getattr(self, wrapper, cosmo):
         """Test that the wrapper can access the attributes of the wrapped object."""
-        # The base Cosmology API doesn't have H0
-        assert wrapper.H0 == cosmo.H0
+        assert wrapper.meta == cosmo.meta
