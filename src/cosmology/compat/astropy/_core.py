@@ -3,37 +3,34 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Any, Union, cast
+from typing import Any, Union, cast
 
-from cosmology.api import CosmologyAPINamespace, CosmologyWrapperAPI
+import astropy.cosmology as astropy_cosmology  # noqa: TCH002
+from astropy.units import Quantity
+from numpy import floating
+from numpy.typing import NDArray
+from typing_extensions import TypeAlias  # noqa: TCH002
+
+from cosmology.api import CosmologyNamespace, CosmologyWrapper
 
 __all__: list[str] = []
 
 
-if TYPE_CHECKING:
-    import astropy.cosmology as astropy_cosmology
-    from numpy import floating
-    from numpy.typing import NDArray
-    from typing_extensions import TypeAlias
-
-    NDFloating: TypeAlias = NDArray[floating[Any]]
-
+NDFloating: TypeAlias = NDArray[floating[Any]]
+InputT: TypeAlias = Union[Quantity, NDFloating, float]
 
 ################################################################################
 
 
 @dataclass(frozen=True)
-class AstropyCosmology(CosmologyWrapperAPI["NDFloating"]):
+class AstropyCosmology(CosmologyWrapper[Quantity, InputT]):
     """The Cosmology API wrapper for :mod:`astropy.cosmology.Cosmology`."""
 
     cosmo: astropy_cosmology.Cosmology
 
     def __cosmology_namespace__(
-        self,
-        /,
-        *,
-        api_version: str | None = None,
-    ) -> CosmologyAPINamespace:
+        self, /, *, api_version: str | None = None
+    ) -> CosmologyNamespace:
         """Returns an object that has all the cosmology API functions on it.
 
         Parameters
@@ -50,12 +47,12 @@ class AstropyCosmology(CosmologyWrapperAPI["NDFloating"]):
 
         Returns
         -------
-        `CosmologyAPINamespace`
+        `cosmology.api.CosmologyNamespace`
             An object representing the Astropy cosmology API namespace.
         """
         import cosmology.compat.astropy
 
-        return cast(CosmologyAPINamespace, cosmology.compat.astropy)
+        return cast(CosmologyNamespace, cosmology.compat.astropy)
 
     @property
     def name(self) -> str | None:

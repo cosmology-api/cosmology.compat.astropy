@@ -3,8 +3,8 @@
 import astropy.cosmology as apycosmo
 import pytest
 
-from cosmology.api import CosmologyAPI, CosmologyWrapperAPI
-from cosmology.compat.astropy import AstropyCosmology
+from cosmology.api import Cosmology, CosmologyWrapper
+from cosmology.compat.astropy._core import AstropyCosmology
 
 ################################################################################
 # TESTS
@@ -24,11 +24,13 @@ class Test_AstropyCosmology:
     # Tests
 
     def test_wrapper_is_compliant(self, wrapper):
-        """Test that AstropyCosmology is a CosmologyWrapperAPI."""
-        assert isinstance(wrapper, CosmologyAPI)
-        assert isinstance(wrapper, CosmologyWrapperAPI)
+        """Test that AstropyCosmology is a CosmologyWrapper."""
+        if hasattr(super(), "test_wrapper_is_compliant"):
+            super().test_wrapper_is_compliant(wrapper)
+
+        assert isinstance(wrapper, Cosmology)
+        assert isinstance(wrapper, CosmologyWrapper)
 
     def test_getattr(self, wrapper, cosmo):
         """Test that the wrapper can access the attributes of the wrapped object."""
-        # The base Cosmology API doesn't have H0
-        assert wrapper.H0 == cosmo.H0
+        assert wrapper.meta == cosmo.meta
