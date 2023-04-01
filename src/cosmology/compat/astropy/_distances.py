@@ -11,6 +11,7 @@ from astropy.cosmology import FLRW  # noqa: TCH002
 from astropy.units import Quantity
 
 from cosmology.api import HasDistanceMeasures as CoreHasDistanceMeasures
+
 from cosmology.compat.astropy._core import InputT
 
 __all__: list[str] = []

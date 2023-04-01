@@ -5,7 +5,6 @@ from __future__ import annotations
 import pytest
 
 from cosmology.api import StandardCosmology, StandardCosmologyWrapper
-from cosmology.compat.astropy import AstropyStandardCosmology
 
 from .test_components import (
     AstropyHasBaryonComponent_Test,
@@ -20,6 +19,7 @@ from .test_components import (
 from .test_core import Test_AstropyCosmology
 from .test_distances import AstropyHasDistanceMeasures_Test
 from .test_extras import AstropyHasCriticalDensity_Test, AstropyHasHubbleParameter_Test
+from cosmology.compat.astropy import AstropyStandardCosmology
 
 ################################################################################
 # TESTS

@@ -6,9 +6,8 @@ import astropy.units as u
 import numpy as np
 from hypothesis import given
 
-from cosmology.compat.astropy._distances import AstropyHasDistanceMeasures
-
 from .conftest import z_arr_st
+from cosmology.compat.astropy._distances import AstropyHasDistanceMeasures
 
 ################################################################################
 # TESTS

@@ -9,6 +9,7 @@ import numpy as np
 from astropy.units import Quantity
 
 from cosmology.api import HasCriticalDensity, HasHubbleParameter
+
 from cosmology.compat.astropy._core import InputT, NDFloating
 
 __all__: list[str] = []

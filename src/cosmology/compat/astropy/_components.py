@@ -18,6 +18,7 @@ from cosmology.api import (
     HasPhotonComponent,
     HasTotalComponent,
 )
+
 from cosmology.compat.astropy._core import InputT
 
 __all__: list[str] = []

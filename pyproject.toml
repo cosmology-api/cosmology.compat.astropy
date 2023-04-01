@@ -167,3 +167,6 @@ known-third-party = [
 known-first-party = [
   "cosmology",
 ]
+known-local-folder = [
+  "cosmology.compat.astropy",
+]

@@ -4,6 +4,7 @@ import astropy.cosmology as apycosmo
 import pytest
 
 from cosmology.api import Cosmology, CosmologyWrapper
+
 from cosmology.compat.astropy._core import AstropyCosmology
 
 ################################################################################
