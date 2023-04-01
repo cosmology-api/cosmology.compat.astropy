@@ -5,21 +5,21 @@ from __future__ import annotations
 import pytest
 
 from cosmology.api import StandardCosmology, StandardCosmologyWrapper
-from cosmology.compat.astropy import AstropyStandardCosmology
 
 from .test_components import (
-    AstropyHasBaryonComponent_Test,
-    AstropyHasDarkEnergyComponent_Test,
-    AstropyHasDarkMatterComponent_Test,
-    AstropyHasGlobalCurvatureComponent_Test,
-    AstropyHasMatterComponent_Test,
-    AstropyHasNeutrinoComponent_Test,
-    AstropyHasPhotonComponent_Test,
-    AstropyHasTotalComponent_Test,
+    AstropyBaryonComponent_Test,
+    AstropyCurvatureComponent_Test,
+    AstropyDarkEnergyComponent_Test,
+    AstropyDarkMatterComponent_Test,
+    AstropyMatterComponent_Test,
+    AstropyNeutrinoComponent_Test,
+    AstropyPhotonComponent_Test,
+    AstropyTotalComponent_Test,
 )
 from .test_core import Test_AstropyCosmology
-from .test_distances import AstropyHasDistanceMeasures_Test
-from .test_extras import AstropyHasCriticalDensity_Test, AstropyHasHubbleParameter_Test
+from .test_distances import AstropyDistanceMeasures_Test
+from .test_extras import AstropyCriticalDensity_Test, AstropyHubbleParameter_Test
+from cosmology.compat.astropy import AstropyStandardCosmology
 
 ################################################################################
 # TESTS
@@ -27,17 +27,17 @@ from .test_extras import AstropyHasCriticalDensity_Test, AstropyHasHubbleParamet
 
 
 class Test_AstropyStandardCosmology(
-    AstropyHasTotalComponent_Test,
-    AstropyHasGlobalCurvatureComponent_Test,
-    AstropyHasMatterComponent_Test,
-    AstropyHasBaryonComponent_Test,
-    AstropyHasNeutrinoComponent_Test,
-    AstropyHasDarkEnergyComponent_Test,
-    AstropyHasDarkMatterComponent_Test,
-    AstropyHasPhotonComponent_Test,
-    AstropyHasCriticalDensity_Test,
-    AstropyHasHubbleParameter_Test,
-    AstropyHasDistanceMeasures_Test,
+    AstropyTotalComponent_Test,
+    AstropyCurvatureComponent_Test,
+    AstropyMatterComponent_Test,
+    AstropyBaryonComponent_Test,
+    AstropyNeutrinoComponent_Test,
+    AstropyDarkEnergyComponent_Test,
+    AstropyDarkMatterComponent_Test,
+    AstropyPhotonComponent_Test,
+    AstropyCriticalDensity_Test,
+    AstropyHubbleParameter_Test,
+    AstropyDistanceMeasures_Test,
     Test_AstropyCosmology,
 ):
     @pytest.fixture(scope="class")

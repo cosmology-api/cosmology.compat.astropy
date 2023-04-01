@@ -9,15 +9,16 @@ import numpy as np
 from astropy.units import Quantity
 
 from cosmology.api import (
-    HasBaryonComponent,
-    HasDarkEnergyComponent,
-    HasDarkMatterComponent,
-    HasGlobalCurvatureComponent,
-    HasMatterComponent,
-    HasNeutrinoComponent,
-    HasPhotonComponent,
-    HasTotalComponent,
+    BaryonComponent,
+    CurvatureComponent,
+    DarkEnergyComponent,
+    DarkMatterComponent,
+    MatterComponent,
+    NeutrinoComponent,
+    PhotonComponent,
+    TotalComponent,
 )
+
 from cosmology.compat.astropy._core import InputT
 
 __all__: list[str] = []
@@ -26,7 +27,7 @@ if TYPE_CHECKING:
     from astropy.cosmology import FLRW
 
 
-class AstropyHasTotalComponent(HasTotalComponent[Quantity, InputT], Protocol):
+class AstropyTotalComponent(TotalComponent[Quantity, InputT], Protocol):
     cosmo: FLRW
 
     @property
@@ -37,8 +38,8 @@ class AstropyHasTotalComponent(HasTotalComponent[Quantity, InputT], Protocol):
         return np.asarray(self.cosmo.Otot(z)) << u.one
 
 
-class AstropyHasGlobalCurvatureComponent(
-    HasGlobalCurvatureComponent[Quantity, InputT],
+class AstropyCurvatureComponent(
+    CurvatureComponent[Quantity, InputT],
     Protocol,
 ):
     cosmo: FLRW
@@ -51,7 +52,7 @@ class AstropyHasGlobalCurvatureComponent(
         return np.asarray(self.cosmo.Ok(z)) << u.one
 
 
-class AstropyHasMatterComponent(HasMatterComponent[Quantity, InputT], Protocol):
+class AstropyMatterComponent(MatterComponent[Quantity, InputT], Protocol):
     cosmo: FLRW
 
     @property
@@ -62,7 +63,7 @@ class AstropyHasMatterComponent(HasMatterComponent[Quantity, InputT], Protocol):
         return np.asarray(self.cosmo.Om(z)) << u.one
 
 
-class AstropyHasBaryonComponent(HasBaryonComponent[Quantity, InputT], Protocol):
+class AstropyBaryonComponent(BaryonComponent[Quantity, InputT], Protocol):
     cosmo: FLRW
 
     @property
@@ -79,7 +80,7 @@ class AstropyHasBaryonComponent(HasBaryonComponent[Quantity, InputT], Protocol):
             return np.asarray(np.zeros_like(z)) << u.one
 
 
-class AstropyHasNeutrinoComponent(HasNeutrinoComponent[Quantity, InputT], Protocol):
+class AstropyNeutrinoComponent(NeutrinoComponent[Quantity, InputT], Protocol):
     cosmo: FLRW
 
     @property
@@ -98,7 +99,7 @@ class AstropyHasNeutrinoComponent(HasNeutrinoComponent[Quantity, InputT], Protoc
         return np.asarray(self.cosmo.Onu(z)) << u.one
 
 
-class AstropyHasDarkEnergyComponent(HasDarkEnergyComponent[Quantity, InputT], Protocol):
+class AstropyDarkEnergyComponent(DarkEnergyComponent[Quantity, InputT], Protocol):
     cosmo: FLRW
 
     @property
@@ -109,7 +110,7 @@ class AstropyHasDarkEnergyComponent(HasDarkEnergyComponent[Quantity, InputT], Pr
         return np.asarray(self.cosmo.Ode(z)) << u.one
 
 
-class AstropyHasDarkMatterComponent(HasDarkMatterComponent[Quantity, InputT], Protocol):
+class AstropyDarkMatterComponent(DarkMatterComponent[Quantity, InputT], Protocol):
     cosmo: FLRW
 
     @property
@@ -129,7 +130,7 @@ class AstropyHasDarkMatterComponent(HasDarkMatterComponent[Quantity, InputT], Pr
             return np.asarray(self.cosmo.Om(z)) << u.one
 
 
-class AstropyHasPhotonComponent(HasPhotonComponent[Quantity, InputT], Protocol):
+class AstropyPhotonComponent(PhotonComponent[Quantity, InputT], Protocol):
     cosmo: FLRW
 
     @property

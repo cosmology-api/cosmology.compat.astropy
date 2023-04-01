@@ -3,7 +3,8 @@
 import astropy.cosmology as apycosmo
 import pytest
 
-from cosmology.api import CosmologyAPI, CosmologyWrapper
+from cosmology.api import Cosmology, CosmologyWrapper
+
 from cosmology.compat.astropy import AstropyCosmology
 
 ################################################################################

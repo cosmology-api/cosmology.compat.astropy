@@ -6,22 +6,21 @@ import astropy.units as u
 import numpy as np
 from hypothesis import given
 
-from cosmology.compat.astropy._distances import AstropyHasDistanceMeasures
-
 from .conftest import z_arr_st
+from cosmology.compat.astropy._distances import AstropyDistanceMeasures
 
 ################################################################################
 # TESTS
 ################################################################################
 
 
-class AstropyHasDistanceMeasures_Test:
+class AstropyDistanceMeasures_Test:
     def test_wrapper_is_compliant(self, wrapper):
         """Test that AstropyCosmology is a BackgroundCosmologyWrapper."""
         if hasattr(super(), "test_wrapper_is_compliant"):
             super().test_wrapper_is_compliant(wrapper)
 
-        assert isinstance(wrapper, AstropyHasDistanceMeasures)
+        assert isinstance(wrapper, AstropyDistanceMeasures)
 
     # =========================================================================
 

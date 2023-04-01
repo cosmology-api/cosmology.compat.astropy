@@ -8,7 +8,8 @@ import astropy.units as u
 import numpy as np
 from astropy.units import Quantity
 
-from cosmology.api import HasCriticalDensity, HasHubbleParameter
+from cosmology.api import CriticalDensity, HubbleParameter
+
 from cosmology.compat.astropy._core import InputT, NDFloating
 
 __all__: list[str] = []
@@ -27,7 +28,7 @@ _RHO_UNITS = u.solMass / u.Mpc**3
 ################################################################################
 
 
-class AstropyHasCriticalDensity(HasCriticalDensity[Quantity, InputT], Protocol):
+class AstropyCriticalDensity(CriticalDensity[Quantity, InputT], Protocol):
     cosmo: FLRW
 
     @property
@@ -38,7 +39,7 @@ class AstropyHasCriticalDensity(HasCriticalDensity[Quantity, InputT], Protocol):
         return self.cosmo.critical_density(z).to(_RHO_UNITS)
 
 
-class AstropyHasHubbleParameter(HasHubbleParameter[Quantity, InputT], Protocol):
+class AstropyHubbleParameter(HubbleParameter[Quantity, InputT], Protocol):
     cosmo: FLRW
 
     @property

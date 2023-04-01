@@ -1,6 +1,7 @@
 """Test the Cosmology API compat library."""
 
 from cosmology.api import CosmologyConstantsNamespace
+
 from cosmology.compat.astropy import constants
 
 

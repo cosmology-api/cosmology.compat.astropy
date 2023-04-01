@@ -10,7 +10,8 @@ import numpy as np
 from astropy.cosmology import FLRW  # noqa: TCH002
 from astropy.units import Quantity
 
-from cosmology.api import HasDistanceMeasures as CoreHasDistanceMeasures
+from cosmology.api import DistanceMeasures as CoreDistanceMeasures
+
 from cosmology.compat.astropy._core import InputT
 
 __all__: list[str] = []
@@ -27,8 +28,8 @@ _MPC3_SR_UNITS = _MPC3_UNITS / u.sr
 
 
 @dataclass(frozen=True)
-class AstropyHasDistanceMeasures(
-    CoreHasDistanceMeasures[Quantity, InputT],
+class AstropyDistanceMeasures(
+    CoreDistanceMeasures[Quantity, InputT],
     Protocol,
 ):
     cosmo: FLRW
