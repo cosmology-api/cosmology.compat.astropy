@@ -11,7 +11,8 @@ from numpy import floating
 from numpy.typing import NDArray
 from typing_extensions import TypeAlias  # noqa: TCH002
 
-from cosmology.api import CosmologyNamespace, CosmologyWrapper
+from cosmology.api import CosmologyNamespace
+from cosmology.api import CosmologyWrapper as CosmologyWrapperAPI
 
 __all__: list[str] = []
 
@@ -23,7 +24,7 @@ InputT: TypeAlias = Union[Quantity, NDFloating, float]
 
 
 @dataclass(frozen=True)
-class AstropyCosmology(CosmologyWrapper[Quantity, InputT]):
+class CosmologyWrapper(CosmologyWrapperAPI[Quantity, InputT]):
     """The Cosmology API wrapper for :mod:`astropy.cosmology.Cosmology`."""
 
     cosmo: astropy_cosmology.Cosmology

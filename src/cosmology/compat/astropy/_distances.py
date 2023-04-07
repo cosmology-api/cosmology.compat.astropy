@@ -3,49 +3,37 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Protocol
+from typing import TYPE_CHECKING
 
 import astropy.units as u
 import numpy as np
 from astropy.cosmology import FLRW  # noqa: TCH002
 from astropy.units import Quantity
 
-from cosmology.api import DistanceMeasures as CoreDistanceMeasures
-
-from cosmology.compat.astropy._core import InputT
-
 __all__: list[str] = []
 
 
-################################################################################
-# PARAMETERS
+if TYPE_CHECKING:
+    from cosmology.compat.astropy._core import InputT
 
 _MPC3_UNITS = u.Mpc**3
 _MPC3_SR_UNITS = _MPC3_UNITS / u.sr
 
 
-################################################################################
-
-
 @dataclass(frozen=True)
-class AstropyDistanceMeasures(
-    CoreDistanceMeasures[Quantity, InputT],
-    Protocol,
-):
+class DistanceMeasures:
     cosmo: FLRW
 
     @property
     def scale_factor0(self) -> Quantity:
         return np.asarray(1.0) << u.one
 
+    def scale_factor(self, z: InputT, /) -> Quantity:
+        return np.asarray(self.cosmo.scale_factor(z)) << u.one
+
     @property
     def Tcmb0(self) -> Quantity:
         return self.cosmo.Tcmb0.to(u.K)
-
-    # ==============================================================
-
-    def scale_factor(self, z: InputT, /) -> Quantity:
-        return np.asarray(self.cosmo.scale_factor(z)) << u.one
 
     def Tcmb(self, z: InputT, /) -> Quantity:
         return self.cosmo.Tcmb(z).to(u.K)

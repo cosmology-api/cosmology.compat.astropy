@@ -2,20 +2,18 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Protocol
+from typing import TYPE_CHECKING
 
 import astropy.units as u
 import numpy as np
 from astropy.units import Quantity
 
-from cosmology.api import CriticalDensity, HubbleParameter
-
-from cosmology.compat.astropy._core import InputT, NDFloating
-
 __all__: list[str] = []
 
 if TYPE_CHECKING:
     from astropy.cosmology import FLRW
+
+    from cosmology.compat.astropy._core import NDFloating
 
 
 ################################################################################
@@ -28,7 +26,7 @@ _RHO_UNITS = u.solMass / u.Mpc**3
 ################################################################################
 
 
-class AstropyCriticalDensity(CriticalDensity[Quantity, InputT], Protocol):
+class CriticalDensity:
     cosmo: FLRW
 
     @property
@@ -39,7 +37,7 @@ class AstropyCriticalDensity(CriticalDensity[Quantity, InputT], Protocol):
         return self.cosmo.critical_density(z).to(_RHO_UNITS)
 
 
-class AstropyHubbleParameter(HubbleParameter[Quantity, InputT], Protocol):
+class HubbleParameter:
     cosmo: FLRW
 
     @property
