@@ -4,52 +4,53 @@ from __future__ import annotations
 
 import pytest
 
-from cosmology.api import StandardCosmology, StandardCosmologyWrapper
+from cosmology.api import StandardCosmology
+from cosmology.api import StandardCosmologyWrapper as StandardCosmologyWrapperAPI
 
 from .test_components import (
-    AstropyHasBaryonComponent_Test,
-    AstropyHasDarkEnergyComponent_Test,
-    AstropyHasDarkMatterComponent_Test,
-    AstropyHasGlobalCurvatureComponent_Test,
-    AstropyHasMatterComponent_Test,
-    AstropyHasNeutrinoComponent_Test,
-    AstropyHasPhotonComponent_Test,
-    AstropyHasTotalComponent_Test,
+    HasBaryonComponent_Test,
+    HasDarkEnergyComponent_Test,
+    HasDarkMatterComponent_Test,
+    HasGlobalCurvatureComponent_Test,
+    HasMatterComponent_Test,
+    HasNeutrinoComponent_Test,
+    HasPhotonComponent_Test,
+    HasTotalComponent_Test,
 )
-from .test_core import Test_AstropyCosmology
-from .test_distances import AstropyHasDistanceMeasures_Test
-from .test_extras import AstropyHasCriticalDensity_Test, AstropyHasHubbleParameter_Test
-from cosmology.compat.astropy import AstropyStandardCosmology
+from .test_core import Test_CosmologyWrapper
+from .test_distances import HasDistanceMeasures_Test
+from .test_extras import HasCriticalDensity_Test, HasHubbleParameter_Test
+from cosmology.compat.astropy import StandardCosmologyWrapper
 
 ################################################################################
 # TESTS
 ################################################################################
 
 
-class Test_AstropyStandardCosmology(
-    AstropyHasTotalComponent_Test,
-    AstropyHasGlobalCurvatureComponent_Test,
-    AstropyHasMatterComponent_Test,
-    AstropyHasBaryonComponent_Test,
-    AstropyHasNeutrinoComponent_Test,
-    AstropyHasDarkEnergyComponent_Test,
-    AstropyHasDarkMatterComponent_Test,
-    AstropyHasPhotonComponent_Test,
-    AstropyHasCriticalDensity_Test,
-    AstropyHasHubbleParameter_Test,
-    AstropyHasDistanceMeasures_Test,
-    Test_AstropyCosmology,
+class Test_StandardCosmologyWrapper(
+    HasTotalComponent_Test,
+    HasGlobalCurvatureComponent_Test,
+    HasMatterComponent_Test,
+    HasBaryonComponent_Test,
+    HasNeutrinoComponent_Test,
+    HasDarkEnergyComponent_Test,
+    HasDarkMatterComponent_Test,
+    HasPhotonComponent_Test,
+    HasCriticalDensity_Test,
+    HasHubbleParameter_Test,
+    HasDistanceMeasures_Test,
+    Test_CosmologyWrapper,
 ):
     @pytest.fixture(scope="class")
     def wrapper(self, cosmo):
-        return AstropyStandardCosmology(cosmo)
+        return StandardCosmologyWrapper(cosmo)
 
     # =========================================================================
     # Tests
 
     def test_wrapper_is_compliant(self, wrapper):
-        """Test that AstropyCosmology is a BackgroundCosmologyWrapper."""
+        """Test that StandardCosmologyWrapper is a StandardCosmologyWrapper."""
         super().test_wrapper_is_compliant(wrapper)
 
         assert isinstance(wrapper, StandardCosmology)
-        assert isinstance(wrapper, StandardCosmologyWrapper)
+        assert isinstance(wrapper, StandardCosmologyWrapperAPI)

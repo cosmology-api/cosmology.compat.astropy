@@ -6,24 +6,22 @@ import astropy.units as u
 import numpy as np
 from hypothesis import given
 
+from cosmology.api import HasCriticalDensity, HasHubbleParameter
+
 from .conftest import z_arr_st
-from cosmology.compat.astropy._extras import (
-    AstropyHasCriticalDensity,
-    AstropyHasHubbleParameter,
-)
 
 ################################################################################
 # TESTS
 ################################################################################
 
 
-class AstropyHasCriticalDensity_Test:
+class HasCriticalDensity_Test:
     def test_wrapper_is_compliant(self, wrapper):
         """Test that AstropyCosmology is a BackgroundCosmologyWrapper."""
         if hasattr(super(), "test_wrapper_is_compliant"):
             super().test_wrapper_is_compliant(wrapper)
 
-        assert isinstance(wrapper, AstropyHasCriticalDensity)
+        assert isinstance(wrapper, HasCriticalDensity)
 
     def test_critical_density0(self, wrapper, cosmo):
         """
@@ -43,13 +41,13 @@ class AstropyHasCriticalDensity_Test:
         assert rho.unit == u.Unit("Msun / Mpc3")
 
 
-class AstropyHasHubbleParameter_Test:
+class HasHubbleParameter_Test:
     def test_wrapper_is_compliant(self, wrapper):
         """Test that AstropyCosmology is a BackgroundCosmologyWrapper."""
         if hasattr(super(), "test_wrapper_is_compliant"):
             super().test_wrapper_is_compliant(wrapper)
 
-        assert isinstance(wrapper, AstropyHasHubbleParameter)
+        assert isinstance(wrapper, HasHubbleParameter)
 
     def test_H0(self, wrapper, cosmo):
         """Test that the wrapper has the same H0 as the wrapped object."""

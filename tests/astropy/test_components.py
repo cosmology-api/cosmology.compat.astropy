@@ -6,30 +6,31 @@ import astropy.units as u
 import numpy as np
 from hypothesis import given
 
-from .conftest import z_arr_st
-from cosmology.compat.astropy._components import (
-    AstropyHasBaryonComponent,
-    AstropyHasDarkEnergyComponent,
-    AstropyHasDarkMatterComponent,
-    AstropyHasGlobalCurvatureComponent,
-    AstropyHasMatterComponent,
-    AstropyHasNeutrinoComponent,
-    AstropyHasPhotonComponent,
-    AstropyHasTotalComponent,
+from cosmology.api import (
+    HasBaryonComponent,
+    HasDarkEnergyComponent,
+    HasDarkMatterComponent,
+    HasGlobalCurvatureComponent,
+    HasMatterComponent,
+    HasNeutrinoComponent,
+    HasPhotonComponent,
+    HasTotalComponent,
 )
+
+from .conftest import z_arr_st
 
 ################################################################################
 # TESTS
 ################################################################################
 
 
-class AstropyHasTotalComponent_Test:
+class HasTotalComponent_Test:
     def test_wrapper_is_compliant(self, wrapper):
         """Test that AstropyCosmology is a BackgroundCosmologyWrapper."""
         if hasattr(super(), "test_wrapper_is_compliant"):
             super().test_wrapper_is_compliant(wrapper)
 
-        assert isinstance(wrapper, AstropyHasTotalComponent)
+        assert isinstance(wrapper, HasTotalComponent)
 
     def test_Omega_tot0(self, wrapper, cosmo):
         """Test that the wrapper has the same Otot0 as the wrapped object."""
@@ -46,13 +47,13 @@ class AstropyHasTotalComponent_Test:
         assert isinstance(omega, u.Quantity)
 
 
-class AstropyHasGlobalCurvatureComponent_Test:
+class HasGlobalCurvatureComponent_Test:
     def test_wrapper_is_compliant(self, wrapper):
         """Test that AstropyCosmology is a BackgroundCosmologyWrapper."""
         if hasattr(super(), "test_wrapper_is_compliant"):
             super().test_wrapper_is_compliant(wrapper)
 
-        assert isinstance(wrapper, AstropyHasGlobalCurvatureComponent)
+        assert isinstance(wrapper, HasGlobalCurvatureComponent)
 
     def test_Omega_k0(self, wrapper, cosmo):
         """Test that the wrapper has the same Omega_k0 as the wrapped object."""
@@ -69,13 +70,13 @@ class AstropyHasGlobalCurvatureComponent_Test:
         assert isinstance(omega, u.Quantity)
 
 
-class AstropyHasMatterComponent_Test:
+class HasMatterComponent_Test:
     def test_wrapper_is_compliant(self, wrapper):
         """Test that AstropyCosmology is a BackgroundCosmologyWrapper."""
         if hasattr(super(), "test_wrapper_is_compliant"):
             super().test_wrapper_is_compliant(wrapper)
 
-        assert isinstance(wrapper, AstropyHasMatterComponent)
+        assert isinstance(wrapper, HasMatterComponent)
 
     def test_Omega_m0(self, wrapper, cosmo):
         """Test that the wrapper has the same Om0 as the wrapped object."""
@@ -93,13 +94,13 @@ class AstropyHasMatterComponent_Test:
         assert isinstance(omega, u.Quantity)
 
 
-class AstropyHasBaryonComponent_Test:
+class HasBaryonComponent_Test:
     def test_wrapper_is_compliant(self, wrapper):
         """Test that AstropyCosmology is a BackgroundCosmologyWrapper."""
         if hasattr(super(), "test_wrapper_is_compliant"):
             super().test_wrapper_is_compliant(wrapper)
 
-        assert isinstance(wrapper, AstropyHasBaryonComponent)
+        assert isinstance(wrapper, HasBaryonComponent)
 
     def test_Omega_b0(self, wrapper, cosmo):
         """Test that the wrapper has the same Omega_b0 as the wrapped object."""
@@ -116,13 +117,13 @@ class AstropyHasBaryonComponent_Test:
         assert isinstance(omega, u.Quantity)
 
 
-class AstropyHasNeutrinoComponent_Test:
+class HasNeutrinoComponent_Test:
     def test_wrapper_is_compliant(self, wrapper):
         """Test that AstropyCosmology is a BackgroundCosmologyWrapper."""
         if hasattr(super(), "test_wrapper_is_compliant"):
             super().test_wrapper_is_compliant(wrapper)
 
-        assert isinstance(wrapper, AstropyHasNeutrinoComponent)
+        assert isinstance(wrapper, HasNeutrinoComponent)
 
     def test_Omega_nu0(self, wrapper, cosmo):
         """Test that the wrapper has the same Omega_nu0 as the wrapped object."""
@@ -152,13 +153,13 @@ class AstropyHasNeutrinoComponent_Test:
         assert isinstance(omega, u.Quantity)
 
 
-class AstropyHasDarkEnergyComponent_Test:
+class HasDarkEnergyComponent_Test:
     def test_wrapper_is_compliant(self, wrapper):
         """Test that AstropyCosmology is a BackgroundCosmologyWrapper."""
         if hasattr(super(), "test_wrapper_is_compliant"):
             super().test_wrapper_is_compliant(wrapper)
 
-        assert isinstance(wrapper, AstropyHasDarkEnergyComponent)
+        assert isinstance(wrapper, HasDarkEnergyComponent)
 
     def test_Omega_de0(self, wrapper, cosmo):
         """Test that the wrapper has the same Omega_de0 as the wrapped object."""
@@ -175,13 +176,13 @@ class AstropyHasDarkEnergyComponent_Test:
         assert isinstance(omega, u.Quantity)
 
 
-class AstropyHasDarkMatterComponent_Test:
+class HasDarkMatterComponent_Test:
     def test_wrapper_is_compliant(self, wrapper):
         """Test that AstropyCosmology is a BackgroundCosmologyWrapper."""
         if hasattr(super(), "test_wrapper_is_compliant"):
             super().test_wrapper_is_compliant(wrapper)
 
-        assert isinstance(wrapper, AstropyHasDarkMatterComponent)
+        assert isinstance(wrapper, HasDarkMatterComponent)
 
     def test_Omega_dm0(self, wrapper, cosmo):
         """Test that the wrapper has the same Omega_dm0 as the wrapped object."""
@@ -198,13 +199,13 @@ class AstropyHasDarkMatterComponent_Test:
         assert isinstance(omega, u.Quantity)
 
 
-class AstropyHasPhotonComponent_Test:
+class HasPhotonComponent_Test:
     def test_wrapper_is_compliant(self, wrapper):
         """Test that AstropyCosmology is a BackgroundCosmologyWrapper."""
         if hasattr(super(), "test_wrapper_is_compliant"):
             super().test_wrapper_is_compliant(wrapper)
 
-        assert isinstance(wrapper, AstropyHasPhotonComponent)
+        assert isinstance(wrapper, HasPhotonComponent)
 
     def test_Omega_gamma0(self, wrapper, cosmo):
         """Test that the wrapper has the same Omega_gamma0 as the wrapped object."""
