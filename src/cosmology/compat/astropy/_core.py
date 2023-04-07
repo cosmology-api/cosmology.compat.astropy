@@ -51,9 +51,9 @@ class CosmologyWrapper(CosmologyWrapperAPI[Quantity, InputT]):
         `cosmology.api.CosmologyNamespace`
             An object representing the Astropy cosmology API namespace.
         """
-        import cosmology.compat.astropy
+        import cosmology.compat.astropy as namespace
 
-        return cast(CosmologyNamespace, cosmology.compat.astropy)
+        return cast(CosmologyNamespace, namespace)
 
     @property
     def name(self) -> str | None:
