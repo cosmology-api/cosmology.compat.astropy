@@ -54,9 +54,6 @@ repos:
     rev: "v1.1.1"
     hooks:
       - id: mypy
-        additional_dependencies: [
-          "git+https://github.com/cosmology-api/cosmology-api.git#egg=cosmology-api"
-        ]
         args:
           - --strict
           - --allow-subclassing-any
