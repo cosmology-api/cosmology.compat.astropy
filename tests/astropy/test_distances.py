@@ -38,16 +38,16 @@ class DistanceMeasures_Test:
         assert isinstance(a, np.ndarray)
         assert isinstance(a, u.Quantity)
 
-    def test_Tcmb0(self, wrapper, cosmo):
+    def test_T_cmb0(self, wrapper, cosmo):
         """Test that the wrapper has the same Tcmb0 as the wrapped object."""
-        assert wrapper.Tcmb0 == cosmo.Tcmb0
-        assert isinstance(wrapper.Tcmb0, u.Quantity)
-        assert wrapper.Tcmb0.unit == u.Unit("K")
+        assert wrapper.T_cmb0 == cosmo.Tcmb0
+        assert isinstance(wrapper.T_cmb0, u.Quantity)
+        assert wrapper.T_cmb0.unit == u.Unit("K")
 
     @given(z_arr_st())
-    def test_Tcmb(self, wrapper, cosmo, z):
+    def test_T_cmb(self, wrapper, cosmo, z):
         """Test that the wrapper's Tcmb is the same as the wrapped object's."""
-        T = cosmo.Tcmb(z)
+        T = cosmo.T_cmb(z)
         assert np.array_equal(T, cosmo.Tcmb(z))
         assert isinstance(T, u.Quantity)
         assert T.unit == u.K
