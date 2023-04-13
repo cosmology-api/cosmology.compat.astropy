@@ -54,11 +54,11 @@ class HasDistanceMeasures:
         return np.asarray(self.cosmo.scale_factor(z)) << u.one
 
     @property
-    def Tcmb0(self) -> Quantity:
+    def T_cmb0(self) -> Quantity:
         """CMB temperature in K at z=0."""
         return self.cosmo.Tcmb0.to(u.K)
 
-    def Tcmb(self, z: InputT, /) -> Quantity:
+    def T_cmb(self, z: InputT, /) -> Quantity:
         """CMB temperature in K at redshift z.
 
         Parameters
