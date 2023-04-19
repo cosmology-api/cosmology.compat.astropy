@@ -6,7 +6,7 @@ import astropy.units as u
 import numpy as np
 from hypothesis import given
 
-from cosmology.api import HasCriticalDensity, HasHubbleParameter
+from cosmology.api import CriticalDensity, HubbleParameter
 
 from .conftest import z_arr_st
 
@@ -21,7 +21,7 @@ class CriticalDensity_Test:
         if hasattr(super(), "test_wrapper_is_compliant"):
             super().test_wrapper_is_compliant(wrapper)
 
-        assert isinstance(wrapper, HasCriticalDensity)
+        assert isinstance(wrapper, CriticalDensity)
 
     def test_critical_density0(self, wrapper, cosmo):
         """
@@ -47,7 +47,7 @@ class HubbleParameter_Test:
         if hasattr(super(), "test_wrapper_is_compliant"):
             super().test_wrapper_is_compliant(wrapper)
 
-        assert isinstance(wrapper, HasHubbleParameter)
+        assert isinstance(wrapper, HubbleParameter)
 
     def test_H0(self, wrapper, cosmo):
         """Test that the wrapper has the same H0 as the wrapped object."""
@@ -76,9 +76,9 @@ class HubbleParameter_Test:
         assert H.unit == u.Unit("km / (Mpc s)")
 
     @given(z_arr_st())
-    def test_h_over_h0(self, wrapper, cosmo, z):
+    def test_H_over_H0(self, wrapper, cosmo, z):
         """Test that the wrapper's efunc is the same as the wrapped object's."""
-        e = wrapper.h_over_h0(z)
+        e = wrapper.H_over_H0(z)
         assert np.array_equal(e, cosmo.efunc(z))
         assert isinstance(e, np.ndarray)
         assert isinstance(e, u.Quantity)

@@ -7,7 +7,7 @@ import numpy as np
 from hypothesis import given
 
 from .conftest import z_arr_st
-from cosmology.compat.astropy._distances import HasDistanceMeasures
+from cosmology.compat.astropy._distances import DistanceMeasures
 
 ################################################################################
 # TESTS
@@ -20,7 +20,7 @@ class DistanceMeasures_Test:
         if hasattr(super(), "test_wrapper_is_compliant"):
             super().test_wrapper_is_compliant(wrapper)
 
-        assert isinstance(wrapper, HasDistanceMeasures)
+        assert isinstance(wrapper, DistanceMeasures)
 
     # =========================================================================
 
@@ -47,7 +47,7 @@ class DistanceMeasures_Test:
     @given(z_arr_st())
     def test_T_cmb(self, wrapper, cosmo, z):
         """Test that the wrapper's Tcmb is the same as the wrapped object's."""
-        T = cosmo.T_cmb(z)
+        T = cosmo.Tcmb(z)
         assert np.array_equal(T, cosmo.Tcmb(z))
         assert isinstance(T, u.Quantity)
         assert T.unit == u.K

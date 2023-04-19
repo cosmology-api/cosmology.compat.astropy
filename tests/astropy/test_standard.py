@@ -8,18 +8,18 @@ from cosmology.api import StandardCosmology
 from cosmology.api import StandardCosmologyWrapper as StandardCosmologyWrapperAPI
 
 from .test_components import (
-    GlobalCurvatureComponent_Test,
-    HasBaryonComponent_Test,
-    HasDarkEnergyComponent_Test,
-    HasDarkMatterComponent_Test,
-    HasMatterComponent_Test,
-    HasNeutrinoComponent_Test,
-    HasPhotonComponent_Test,
+    BaryonComponent_Test,
+    CurvatureComponent_Test,
+    DarkEnergyComponent_Test,
+    DarkMatterComponent_Test,
+    MatterComponent_Test,
+    NeutrinoComponent_Test,
+    PhotonComponent_Test,
     TotalComponent_Test,
 )
 from .test_core import Test_CosmologyWrapper
-from .test_distances import HasDistanceMeasures_Test
-from .test_extras import HasCriticalDensity_Test, HasHubbleParameter_Test
+from .test_distances import DistanceMeasures_Test
+from .test_extras import CriticalDensity_Test, HubbleParameter_Test
 from cosmology.compat.astropy import StandardCosmologyWrapper
 
 ################################################################################
@@ -29,16 +29,16 @@ from cosmology.compat.astropy import StandardCosmologyWrapper
 
 class Test_StandardCosmologyWrapper(
     TotalComponent_Test,
-    GlobalCurvatureComponent_Test,
-    HasMatterComponent_Test,
-    HasBaryonComponent_Test,
-    HasNeutrinoComponent_Test,
-    HasDarkEnergyComponent_Test,
-    HasDarkMatterComponent_Test,
-    HasPhotonComponent_Test,
-    HasCriticalDensity_Test,
-    HasHubbleParameter_Test,
-    HasDistanceMeasures_Test,
+    CurvatureComponent_Test,
+    MatterComponent_Test,
+    BaryonComponent_Test,
+    NeutrinoComponent_Test,
+    DarkEnergyComponent_Test,
+    DarkMatterComponent_Test,
+    PhotonComponent_Test,
+    CriticalDensity_Test,
+    HubbleParameter_Test,
+    DistanceMeasures_Test,
     Test_CosmologyWrapper,
 ):
     @pytest.fixture(scope="class")
