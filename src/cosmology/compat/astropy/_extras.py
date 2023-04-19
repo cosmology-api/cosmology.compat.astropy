@@ -75,7 +75,7 @@ class HubbleParameter:
         """  # noqa: D402
         return self.cosmo.H(z).to(_H0_UNITS)
 
-    def h_over_h0(self, z: Quantity | NDFloating | float, /) -> Quantity:
+    def H_over_H0(self, z: Quantity | NDFloating | float, /) -> Quantity:
         """Standardised Hubble function :math:`E(z) = H(z)/H_0`.
 
         Parameters

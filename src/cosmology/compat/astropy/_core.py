@@ -46,3 +46,8 @@ class CosmologyWrapper(CosmologyWrapperAPI[Quantity, InputT]):
     def name(self) -> str | None:
         """The name of the cosmology instance."""
         return cast(Union[str, None], self.cosmo.name)
+
+    # ========================================================================
+    # Convenience methods
+
+    # @property constants is inherited from CosmologyWrapperAPI
