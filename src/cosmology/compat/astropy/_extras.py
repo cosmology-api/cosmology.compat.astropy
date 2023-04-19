@@ -26,7 +26,7 @@ _RHO_UNITS = u.solMass / u.Mpc**3
 ################################################################################
 
 
-class HasCriticalDensity:
+class CriticalDensity:
     """The cosmology has methods for the critical density."""
 
     cosmo: FLRW
@@ -41,7 +41,7 @@ class HasCriticalDensity:
         return self.cosmo.critical_density(z).to(_RHO_UNITS)
 
 
-class HasHubbleParameter:
+class HubbleParameter:
     r"""The cosmology has methods to retrieve the Hubble parameter :math:`H`."""
 
     cosmo: FLRW
@@ -75,7 +75,7 @@ class HasHubbleParameter:
         """  # noqa: D402
         return self.cosmo.H(z).to(_H0_UNITS)
 
-    def h_over_h0(self, z: Quantity | NDFloating | float, /) -> Quantity:
+    def H_over_H0(self, z: Quantity | NDFloating | float, /) -> Quantity:
         """Standardised Hubble function :math:`E(z) = H(z)/H_0`.
 
         Parameters

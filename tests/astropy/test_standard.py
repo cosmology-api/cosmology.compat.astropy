@@ -8,14 +8,14 @@ from cosmology.api import StandardCosmology
 from cosmology.api import StandardCosmologyWrapper as StandardCosmologyWrapperAPI
 
 from .test_components import (
+    GlobalCurvatureComponent_Test,
     HasBaryonComponent_Test,
     HasDarkEnergyComponent_Test,
     HasDarkMatterComponent_Test,
-    HasGlobalCurvatureComponent_Test,
     HasMatterComponent_Test,
     HasNeutrinoComponent_Test,
     HasPhotonComponent_Test,
-    HasTotalComponent_Test,
+    TotalComponent_Test,
 )
 from .test_core import Test_CosmologyWrapper
 from .test_distances import HasDistanceMeasures_Test
@@ -28,8 +28,8 @@ from cosmology.compat.astropy import StandardCosmologyWrapper
 
 
 class Test_StandardCosmologyWrapper(
-    HasTotalComponent_Test,
-    HasGlobalCurvatureComponent_Test,
+    TotalComponent_Test,
+    GlobalCurvatureComponent_Test,
     HasMatterComponent_Test,
     HasBaryonComponent_Test,
     HasNeutrinoComponent_Test,

@@ -7,18 +7,18 @@ from dataclasses import dataclass
 from astropy.cosmology import FLRW  # noqa: TCH002
 
 from cosmology.compat.astropy._components import (
-    HasBaryonComponent,
-    HasDarkEnergyComponent,
-    HasDarkMatterComponent,
-    HasGlobalCurvatureComponent,
-    HasMatterComponent,
-    HasNeutrinoComponent,
-    HasPhotonComponent,
-    HasTotalComponent,
+    BaryonComponent,
+    CurvatureComponent,
+    DarkEnergyComponent,
+    DarkMatterComponent,
+    MatterComponent,
+    NeutrinoComponent,
+    PhotonComponent,
+    TotalComponent,
 )
 from cosmology.compat.astropy._core import CosmologyWrapper
-from cosmology.compat.astropy._distances import HasDistanceMeasures
-from cosmology.compat.astropy._extras import HasCriticalDensity, HasHubbleParameter
+from cosmology.compat.astropy._distances import DistanceMeasures
+from cosmology.compat.astropy._extras import CriticalDensity, HubbleParameter
 
 __all__: list[str] = []
 
@@ -28,17 +28,17 @@ __all__: list[str] = []
 
 @dataclass(frozen=True)
 class StandardCosmologyWrapper(
-    HasNeutrinoComponent,
-    HasBaryonComponent,
-    HasPhotonComponent,
-    HasDarkMatterComponent,
-    HasMatterComponent,
-    HasDarkEnergyComponent,
-    HasGlobalCurvatureComponent,
-    HasTotalComponent,
-    HasHubbleParameter,
-    HasCriticalDensity,
-    HasDistanceMeasures,
+    NeutrinoComponent,
+    BaryonComponent,
+    PhotonComponent,
+    DarkMatterComponent,
+    MatterComponent,
+    DarkEnergyComponent,
+    CurvatureComponent,
+    TotalComponent,
+    HubbleParameter,
+    CriticalDensity,
+    DistanceMeasures,
     CosmologyWrapper,
 ):
     """The Cosmology API wrapper for :mod:`astropy.cosmology.Cosmology`."""

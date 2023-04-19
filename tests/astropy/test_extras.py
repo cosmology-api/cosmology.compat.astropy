@@ -15,7 +15,7 @@ from .conftest import z_arr_st
 ################################################################################
 
 
-class HasCriticalDensity_Test:
+class CriticalDensity_Test:
     def test_wrapper_is_compliant(self, wrapper):
         """Test that AstropyCosmology is a BackgroundCosmologyWrapper."""
         if hasattr(super(), "test_wrapper_is_compliant"):
@@ -41,7 +41,7 @@ class HasCriticalDensity_Test:
         assert rho.unit == u.Unit("Msun / Mpc3")
 
 
-class HasHubbleParameter_Test:
+class HubbleParameter_Test:
     def test_wrapper_is_compliant(self, wrapper):
         """Test that AstropyCosmology is a BackgroundCosmologyWrapper."""
         if hasattr(super(), "test_wrapper_is_compliant"):

@@ -16,7 +16,7 @@ if TYPE_CHECKING:
     from cosmology.compat.astropy._core import InputT
 
 
-class HasTotalComponent:
+class TotalComponent:
     r"""The cosmology contains a total density, described by :math:`Omega_{\rm tot}`."""
 
     cosmo: FLRW
@@ -31,7 +31,7 @@ class HasTotalComponent:
         return np.asarray(self.cosmo.Otot(z)) << u.one
 
 
-class HasGlobalCurvatureComponent:
+class CurvatureComponent:
     r"""The cosmology contains global curvature, described by :math:`Omega_k`."""
 
     cosmo: FLRW
@@ -56,7 +56,7 @@ class HasGlobalCurvatureComponent:
         return np.asarray(self.cosmo.Ok(z)) << u.one
 
 
-class HasMatterComponent:
+class MatterComponent:
     r"""The cosmology contains matter, described by :math:`Omega_m`."""
 
     cosmo: FLRW
@@ -86,7 +86,7 @@ class HasMatterComponent:
         return np.asarray(self.cosmo.Om(z)) << u.one
 
 
-class HasBaryonComponent:
+class BaryonComponent:
     r"""The cosmology contains baryons, described by :math:`Omega_b`."""
 
     cosmo: FLRW
@@ -117,7 +117,7 @@ class HasBaryonComponent:
             return np.asarray(np.zeros_like(z)) << u.one
 
 
-class HasNeutrinoComponent:
+class NeutrinoComponent:
     r"""The cosmology contains neutrinos, described by :math:`Omega_\nu`."""
 
     cosmo: FLRW
@@ -152,7 +152,7 @@ class HasNeutrinoComponent:
         return np.asarray(self.cosmo.Onu(z)) << u.one
 
 
-class HasDarkEnergyComponent:
+class DarkEnergyComponent:
     r"""The cosmology contains photons, described by :math:`Omega_{\rm de}`."""
 
     cosmo: FLRW
@@ -177,7 +177,7 @@ class HasDarkEnergyComponent:
         return np.asarray(self.cosmo.Ode(z)) << u.one
 
 
-class HasDarkMatterComponent:
+class DarkMatterComponent:
     r"""The cosmology contains cold dark matter, described by :math:`Omega_dm`."""
 
     cosmo: FLRW
@@ -216,7 +216,7 @@ class HasDarkMatterComponent:
             return np.asarray(self.cosmo.Om(z)) << u.one
 
 
-class HasPhotonComponent:
+class PhotonComponent:
     r"""The cosmology contains photons, described by :math:`Omega_\gamma`."""
 
     cosmo: FLRW

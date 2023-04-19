@@ -14,7 +14,7 @@ from cosmology.compat.astropy._distances import HasDistanceMeasures
 ################################################################################
 
 
-class HasDistanceMeasures_Test:
+class DistanceMeasures_Test:
     def test_wrapper_is_compliant(self, wrapper):
         """Test that AstropyCosmology is a BackgroundCosmologyWrapper."""
         if hasattr(super(), "test_wrapper_is_compliant"):
