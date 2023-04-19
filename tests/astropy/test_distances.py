@@ -47,7 +47,7 @@ class DistanceMeasures_Test:
     @given(z_arr_st())
     def test_T_cmb(self, wrapper, cosmo, z):
         """Test that the wrapper's Tcmb is the same as the wrapped object's."""
-        T = cosmo.T_cmb(z)
+        T = cosmo.Tcmb(z)
         assert np.array_equal(T, cosmo.Tcmb(z))
         assert isinstance(T, u.Quantity)
         assert T.unit == u.K

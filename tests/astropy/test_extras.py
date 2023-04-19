@@ -76,9 +76,9 @@ class HubbleParameter_Test:
         assert H.unit == u.Unit("km / (Mpc s)")
 
     @given(z_arr_st())
-    def test_h_over_h0(self, wrapper, cosmo, z):
+    def test_H_over_H0(self, wrapper, cosmo, z):
         """Test that the wrapper's efunc is the same as the wrapped object's."""
-        e = wrapper.h_over_h0(z)
+        e = wrapper.H_over_H0(z)
         assert np.array_equal(e, cosmo.efunc(z))
         assert isinstance(e, np.ndarray)
         assert isinstance(e, u.Quantity)

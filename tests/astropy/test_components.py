@@ -8,9 +8,9 @@ from hypothesis import given
 
 from cosmology.api import (
     BaryonComponent,
+    CurvatureComponent,
     DarkEnergyComponent,
     DarkMatterComponent,
-    CurvatureComponent,
     MatterComponent,
     NeutrinoComponent,
     PhotonComponent,
