@@ -77,12 +77,12 @@ class DistanceMeasures_Test:
         assert d.unit == u.Unit("Mpc")
 
     @given(z_arr_st())
-    def test_comoving_transverse_distance(self, wrapper, cosmo, z):
-        """Test the wrapper's comoving_transverse_distance."""
-        d = wrapper.comoving_transverse_distance(z)
-        assert np.array_equal(d, cosmo.comoving_transverse_distance(z))
+    def test_transverse_comoving_distance(self, wrapper, cosmo, z):
+        """Test the wrapper's transverse_comoving_distance."""
+        d = wrapper.transverse_comoving_distance(z)
         assert isinstance(d, u.Quantity)
         assert d.unit == u.Unit("Mpc")
+        assert np.array_equal(d, cosmo.comoving_transverse_distance(z))
 
     @given(z_arr_st())
     def test_comoving_volume(self, wrapper, cosmo, z):

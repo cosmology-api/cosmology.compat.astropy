@@ -93,7 +93,7 @@ class ComovingDistanceMeasures:
         z1, z2 = (0.0, z) if zp is None else (z, zp)
         return self.cosmo._comoving_distance_z1z2(z1, z2).to(u.Mpc)  # noqa: SLF001
 
-    def comoving_transverse_distance(
+    def transverse_comoving_distance(
         self, z: InputT, zp: InputT | None = None, /
     ) -> Quantity:
         r"""Transverse comoving distance :math:`d_M(z1, z2)` in Mpc.
@@ -286,4 +286,4 @@ class DistanceMeasures(TemperatureCMB, ScaleFactor, ComovingDistanceMeasures):
         ----------
         .. [1] Weinberg, 1972, pp 420-424; Weedman, 1986, pp 60-62.
         """
-        return (z + 1.0) * self.comoving_transverse_distance(z, zp).to(u.Mpc)
+        return (z + 1.0) * self.transverse_comoving_distance(z, zp).to(u.Mpc)
