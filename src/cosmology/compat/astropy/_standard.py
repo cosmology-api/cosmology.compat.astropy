@@ -44,3 +44,6 @@ class StandardCosmologyWrapper(
     """The Cosmology API wrapper for :mod:`astropy.cosmology.Cosmology`."""
 
     cosmo: FLRW
+
+    def __post_init__(self) -> None:
+        super().__post_init__()

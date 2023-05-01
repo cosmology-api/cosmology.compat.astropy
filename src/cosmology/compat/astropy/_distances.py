@@ -2,10 +2,13 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+from contextlib import suppress
+from typing import TYPE_CHECKING, Any, overload
 
 import astropy.units as u
 import numpy as np
+import scipy.integrate as si
+from astropy.cosmology import FLRW
 
 __all__: list[str] = []
 
@@ -13,6 +16,7 @@ __all__: list[str] = []
 if TYPE_CHECKING:
     from astropy.cosmology import FLRW
     from astropy.units import Quantity
+    from numpy.typing import NDArray
 
     from cosmology.compat.astropy._core import InputT
 
@@ -181,6 +185,11 @@ class ComovingDistanceMeasures:
         ).to(_MPC3_SR_UNITS)
 
 
+def _lookback_time_z1z2(cosmo: FLRW, z1: InputT, z2: InputT, /) -> NDArray:
+    """Lookback time to redshift ``z``. Value in units of Hubble time."""
+    return si.quad(cosmo._lookback_time_integrand_scalar, z1, z2)[0]  # noqa: SLF001
+
+
 class DistanceMeasures(TemperatureCMB, ScaleFactor, ComovingDistanceMeasures):
     """Cosmology API protocol for distance measures.
 
@@ -191,6 +200,18 @@ class DistanceMeasures(TemperatureCMB, ScaleFactor, ComovingDistanceMeasures):
     """
 
     cosmo: FLRW
+    _cosmo_fn: dict[str, Any]
+
+    def __post_init__(self) -> None:
+        with suppress(AttributeError):
+            super().__post_init__()  # type: ignore[misc]
+
+        self._cosmo_fn: dict[str, Any]
+        self._cosmo_fn.update(
+            {
+                "lookback_time": np.vectorize(_lookback_time_z1z2, excluded=["cosmo"]),
+            }
+        )
 
     # ----------------------------------------------
     # Time
@@ -209,22 +230,37 @@ class DistanceMeasures(TemperatureCMB, ScaleFactor, ComovingDistanceMeasures):
         """
         return self.cosmo.age(z).to(u.Gyr)
 
+    @overload
     def lookback_time(self, z: InputT, /) -> Quantity:
-        """Lookback time to redshift ``z`` in Gyr.
+        ...
 
-        The lookback time is the difference between the age of the Universe now
-        and the age at redshift ``z``.
+    @overload
+    def lookback_time(self, z1: InputT, z2: InputT, /) -> Quantity:
+        ...
+
+    def lookback_time(self, z1: InputT, z2: InputT | None = None, /) -> Quantity:
+        """Lookback time in Gyr.
+
+        The lookback time is the time that it took light from being emitted at
+        one redshift to being observed at another redshift. Effectively it is
+        the difference between the age of the Universe at the two redshifts.
 
         Parameters
         ----------
         z : Quantity, positional-only
-            Input redshift.
+        z1, z2 : Quantity, positional-only
+            Input redshifts. If one argument ``z`` is given, the time
+            :math:`t_T(0, z)` is returned. If two arguments ``z1, z2`` are
+            given, the time :math:`t_T(z_1, z_2)` is returned.
 
         Returns
         -------
         Quantity
         """
-        return self.cosmo.lookback_time(z).to(u.Gyr)
+        z1, z2 = (0.0, z1) if z2 is None else (z1, z2)
+        return (
+            self.cosmo.hubble_time * self._cosmo_fn["lookback_time"](self.cosmo, z1, z2)
+        ).to(u.Gyr)
 
     # ----------------------------------------------
     # Angular diameter distance

@@ -126,15 +126,12 @@ where = ["src"]
     ignore_missing_imports = true
 
   [[tool.mypy.overrides]]
-    module="astropy.*"
-    ignore_missing_imports = true
-
-  [[tool.mypy.overrides]]
-    module="numpy.*"
-    ignore_missing_imports = true
-
-  [[tool.mypy.overrides]]
-    module="tomli.*"
+    module=[
+      "astropy.*",
+      "numpy.*",
+      "scipy.*",
+      "tomli.*"
+    ]
     ignore_missing_imports = true
 
 

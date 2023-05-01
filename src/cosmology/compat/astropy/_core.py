@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Any, Union, cast
+from typing import Any, Callable, Union, cast
 
 import astropy.cosmology as astropy_cosmology  # noqa: TCH002
 from astropy.units import Quantity
@@ -28,6 +28,10 @@ class CosmologyWrapper(CosmologyWrapperAPI[Quantity, InputT]):
     """The Cosmology API wrapper for :mod:`astropy.cosmology.Cosmology`."""
 
     cosmo: astropy_cosmology.Cosmology
+
+    def __post_init__(self) -> None:
+        self._cosmo_fn: dict[str, Callable[..., Any]]
+        object.__setattr__(self, "_cosmo_fn", {})
 
     @property
     def __cosmology_namespace__(self) -> CosmologyNamespace:
