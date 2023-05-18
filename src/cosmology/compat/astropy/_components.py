@@ -6,17 +6,26 @@ from typing import TYPE_CHECKING
 
 import astropy.units as u
 import numpy as np
+from astropy.units import Quantity
+
+from cosmology.api import BaryonComponent as BaryonComponentAPI
+from cosmology.api import CurvatureComponent as CurvatureComponentAPI
+from cosmology.api import DarkEnergyComponent as DarkEnergyComponentAPI
+from cosmology.api import DarkMatterComponent as DarkMatterComponentAPI
+from cosmology.api import MatterComponent as MatterComponentAPI
+from cosmology.api import NeutrinoComponent as NeutrinoComponentAPI
+from cosmology.api import PhotonComponent as PhotonComponentAPI
+from cosmology.api import TotalComponent as TotalComponentAPI
+
+from cosmology.compat.astropy._core import InputT
 
 __all__: list[str] = []
 
 if TYPE_CHECKING:
     from astropy.cosmology import FLRW
-    from astropy.units import Quantity
-
-    from cosmology.compat.astropy._core import InputT
 
 
-class TotalComponent:
+class TotalComponent(TotalComponentAPI[Quantity, InputT]):
     r"""The cosmology contains a total density, described by :math:`Omega_{\rm tot}`."""
 
     cosmo: FLRW
@@ -31,7 +40,7 @@ class TotalComponent:
         return np.asarray(self.cosmo.Otot(z)) << u.one
 
 
-class CurvatureComponent:
+class CurvatureComponent(CurvatureComponentAPI[Quantity, InputT]):
     r"""The cosmology contains global curvature, described by :math:`Omega_k`."""
 
     cosmo: FLRW
@@ -56,7 +65,7 @@ class CurvatureComponent:
         return np.asarray(self.cosmo.Ok(z)) << u.one
 
 
-class MatterComponent:
+class MatterComponent(MatterComponentAPI[Quantity, InputT]):
     r"""The cosmology contains matter, described by :math:`Omega_m`."""
 
     cosmo: FLRW
@@ -86,7 +95,7 @@ class MatterComponent:
         return np.asarray(self.cosmo.Om(z)) << u.one
 
 
-class BaryonComponent:
+class BaryonComponent(BaryonComponentAPI[Quantity, InputT]):
     r"""The cosmology contains baryons, described by :math:`Omega_b`."""
 
     cosmo: FLRW
@@ -117,7 +126,7 @@ class BaryonComponent:
             return np.asarray(np.zeros_like(z)) << u.one
 
 
-class NeutrinoComponent:
+class NeutrinoComponent(NeutrinoComponentAPI[Quantity, InputT]):
     r"""The cosmology contains neutrinos, described by :math:`Omega_\nu`."""
 
     cosmo: FLRW
@@ -152,7 +161,7 @@ class NeutrinoComponent:
         return np.asarray(self.cosmo.Onu(z)) << u.one
 
 
-class DarkEnergyComponent:
+class DarkEnergyComponent(DarkEnergyComponentAPI[Quantity, InputT]):
     r"""The cosmology contains photons, described by :math:`Omega_{\rm de}`."""
 
     cosmo: FLRW
@@ -177,7 +186,7 @@ class DarkEnergyComponent:
         return np.asarray(self.cosmo.Ode(z)) << u.one
 
 
-class DarkMatterComponent:
+class DarkMatterComponent(DarkMatterComponentAPI[Quantity, InputT]):
     r"""The cosmology contains cold dark matter, described by :math:`Omega_dm`."""
 
     cosmo: FLRW
@@ -216,7 +225,7 @@ class DarkMatterComponent:
             return np.asarray(self.cosmo.Om(z)) << u.one
 
 
-class PhotonComponent:
+class PhotonComponent(PhotonComponentAPI[Quantity, InputT]):
     r"""The cosmology contains photons, described by :math:`Omega_\gamma`."""
 
     cosmo: FLRW

@@ -28,6 +28,8 @@ __all__: list[str] = []
 
 @dataclass(frozen=True)
 class StandardCosmologyWrapper(
+    CosmologyWrapper,
+    # Mix in the components
     NeutrinoComponent,
     BaryonComponent,
     PhotonComponent,
@@ -39,11 +41,7 @@ class StandardCosmologyWrapper(
     HubbleParameter,
     CriticalDensity,
     DistanceMeasures,
-    CosmologyWrapper,
 ):
     """The Cosmology API wrapper for :mod:`astropy.cosmology.Cosmology`."""
 
     cosmo: FLRW
-
-    def __post_init__(self) -> None:
-        super().__post_init__()
