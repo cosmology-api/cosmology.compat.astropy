@@ -151,6 +151,13 @@ ignore = [
   "N802",
   "PD",
   "RET505", "RET506", "RET507",
+
+  # flake8-fixme (FIX)
+  "FIX002",  # Line contains TODO
+
+  # flake8-todos (TD)
+  "TD002",  # Missing author in TODO
+  "TD003",  # Missing issue link on the line following this TODO
 ]
 
 [tool.ruff.per-file-ignores]
