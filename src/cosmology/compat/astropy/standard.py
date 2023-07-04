@@ -7,13 +7,13 @@ from typing import TYPE_CHECKING
 
 import astropy.units as u
 import numpy as np
-from astropy.units import Quantity
 
 from cosmology.api import StandardCosmologyWrapperAPI
 from cosmology.compat.astropy.background import AstropyBackgroundCosmology
 
 if TYPE_CHECKING:
     import astropy.cosmology as astropy_cosmology
+    from astropy.units import Quantity
 
     from cosmology.compat.astropy.core import NDFloating
 
