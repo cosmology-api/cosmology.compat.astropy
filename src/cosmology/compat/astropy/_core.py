@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from contextlib import suppress
 from dataclasses import dataclass
 from typing import Any, Callable, Union, cast
 
@@ -32,6 +33,9 @@ class CosmologyWrapper(CosmologyWrapperAPI[Quantity, InputT]):
     def __post_init__(self) -> None:
         self._cosmo_fn: dict[str, Callable[..., Any]]
         object.__setattr__(self, "_cosmo_fn", {})
+
+        with suppress(AttributeError):
+            super().__post_init__()
 
     @property
     def __cosmology_namespace__(self) -> CosmologyNamespace:
