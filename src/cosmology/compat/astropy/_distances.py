@@ -11,7 +11,7 @@ import scipy.integrate as si
 from astropy.units import Quantity
 
 from cosmology.api import ComovingDistanceMeasures as ComovingDistanceMeasuresAPI
-from cosmology.api import HasConstantsNamespace
+from cosmology.api import CosmologyNamespace
 from cosmology.api import LookbackDistanceMeasures as LookbackDistanceMeasuresAPI
 from cosmology.api import ProperDistanceMeasures as ProperDistanceMeasuresAPI
 from cosmology.api import ScaleFactor as ScaleFactorAPI
@@ -274,7 +274,7 @@ def _lookback_time_z1z2(cosmo: FLRW, z1: InputT, z2: InputT, /) -> NDArray:
 
 
 class LookbackDistanceMeasures(
-    LookbackDistanceMeasuresAPI[Quantity, InputT], HasConstantsNamespace
+    LookbackDistanceMeasuresAPI[Quantity, InputT], CosmologyNamespace
 ):
     cosmo: FLRW
 
