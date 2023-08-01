@@ -109,7 +109,7 @@ class ComovingDistanceMeasures(ComovingDistanceMeasuresAPI[Quantity, InputT]):
         Quantity
         """
         z1, z2 = (0.0, z1) if z2 is None else (z1, z2)
-        return self.cosmo._comoving_distance_z1z2(z1, z2).to(u.Mpc)  # noqa: SLF001
+        return self.cosmo._comoving_distance_z1z2(z1, z2).to(u.Mpc)
 
     @overload
     def transverse_comoving_distance(self, z: InputT, /) -> Quantity:
@@ -142,9 +142,7 @@ class ComovingDistanceMeasures(ComovingDistanceMeasuresAPI[Quantity, InputT]):
         Quantity
         """
         z1, z2 = (0.0, z1) if z2 is None else (z1, z2)
-        return self.cosmo._comoving_transverse_distance_z1z2(z1, z2).to(  # noqa: SLF001
-            u.Mpc
-        )
+        return self.cosmo._comoving_transverse_distance_z1z2(z1, z2).to(u.Mpc)
 
     @overload
     def comoving_volume(self, z: InputT, /) -> Quantity:
@@ -236,7 +234,9 @@ class ProperDistanceMeasures(ProperDistanceMeasuresAPI[Quantity, InputT]):
         Quantity
             The proper distance :math:`d` in Mpc.
         """
-        raise NotImplementedError
+        d2 = self.cosmo.scale_factor(z2) * self.comoving_distance(z2)
+        d1 = self.cosmo.scale_factor(z1) * self.comoving_distance(z1)
+        return d2 - d1
 
     @overload
     def proper_time(self, z: InputT, /) -> Quantity:
@@ -265,12 +265,12 @@ class ProperDistanceMeasures(ProperDistanceMeasuresAPI[Quantity, InputT]):
         Quantity
             The proper time :math:`t` in Gyr.
         """
-        raise NotImplementedError
+        return (self.proper_distance(z1, z2) / self.constants.c).to(u.Gyr)
 
 
 def _lookback_time_z1z2(cosmo: FLRW, z1: InputT, z2: InputT, /) -> NDArray:
     """Lookback time to redshift ``z``. Value in units of Hubble time."""
-    return si.quad(cosmo._lookback_time_integrand_scalar, z1, z2)[0]  # noqa: SLF001
+    return si.quad(cosmo._lookback_time_integrand_scalar, z1, z2)[0]
 
 
 class LookbackDistanceMeasures(

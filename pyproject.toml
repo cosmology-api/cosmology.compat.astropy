@@ -150,6 +150,9 @@ ignore = [
   "PD",
   "RET505", "RET506", "RET507",
 
+  # flake8-self
+  "SLF001",  # Private member accessed
+
   # flake8-fixme (FIX)
   "FIX002",  # Line contains TODO
 
