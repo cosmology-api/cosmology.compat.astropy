@@ -8,7 +8,7 @@ import pytest
 from hypothesis import given
 from hypothesis.extra import numpy as npst
 
-from cosmology.api import StandardCosmologyAPI, StandardCosmologyWrapperAPI
+from cosmology.api import StandardCosmologyAPI, StandardCosmologyWrapper
 from cosmology.compat.astropy import AstropyStandardCosmology
 
 from .test_background import Test_AstropyBackgroundCosmology
@@ -41,11 +41,11 @@ class Test_AstropyStandardCosmology(Test_AstropyBackgroundCosmology):
     # Tests
 
     def test_wrapper_is_compliant(self, wrapper):
-        """Test that AstropyCosmology is a BackgroundCosmologyWrapperAPI."""
+        """Test that AstropyCosmology is a BackgroundCosmologyWrapper."""
         super().test_wrapper_is_compliant(wrapper)
 
         assert isinstance(wrapper, StandardCosmologyAPI)
-        assert isinstance(wrapper, StandardCosmologyWrapperAPI)
+        assert isinstance(wrapper, StandardCosmologyWrapper)
 
     # =========================================================================
     # FLRW API Tests

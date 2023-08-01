@@ -8,7 +8,7 @@ import pytest
 from hypothesis import given
 from hypothesis.extra import numpy as npst
 
-from cosmology.api import BackgroundCosmologyAPI, BackgroundCosmologyWrapperAPI
+from cosmology.api import BackgroundCosmologyAPI, BackgroundCosmologyWrapper
 from cosmology.compat.astropy import AstropyBackgroundCosmology
 
 from .test_core import Test_AstropyCosmology
@@ -41,11 +41,11 @@ class Test_AstropyBackgroundCosmology(Test_AstropyCosmology):
     # Tests
 
     def test_wrapper_is_compliant(self, wrapper):
-        """Test that AstropyCosmology is a BackgroundCosmologyWrapperAPI."""
+        """Test that AstropyCosmology is a BackgroundCosmologyWrapper."""
         super().test_wrapper_is_compliant(wrapper)
 
         assert isinstance(wrapper, BackgroundCosmologyAPI)
-        assert isinstance(wrapper, BackgroundCosmologyWrapperAPI)
+        assert isinstance(wrapper, BackgroundCosmologyWrapper)
 
     def test_getattr(self, wrapper, cosmo):
         """Test that the wrapper can access the attributes of the wrapped object."""

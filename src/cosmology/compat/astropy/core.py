@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Any, Union, cast
 
-from cosmology.api import CosmologyAPINamespace, CosmologyWrapperAPI
+from cosmology.api import CosmologyNamespace, CosmologyWrapper
 
 __all__: list[str] = []
 
@@ -23,17 +23,13 @@ if TYPE_CHECKING:
 
 
 @dataclass(frozen=True)
-class AstropyCosmology(CosmologyWrapperAPI["NDFloating"]):
+class AstropyCosmology(CosmologyWrapper["NDFloating", "NDFloating | float"]):
     """The Cosmology API wrapper for :mod:`astropy.cosmology.Cosmology`."""
 
     cosmo: astropy_cosmology.Cosmology
 
-    def __cosmology_namespace__(
-        self,
-        /,
-        *,
-        api_version: str | None = None,
-    ) -> CosmologyAPINamespace:
+    @property
+    def __cosmology_namespace__(self) -> CosmologyNamespace:
         """Returns an object that has all the cosmology API functions on it.
 
         Parameters
@@ -50,12 +46,12 @@ class AstropyCosmology(CosmologyWrapperAPI["NDFloating"]):
 
         Returns
         -------
-        `CosmologyAPINamespace`
+        `CosmologyNamespace`
             An object representing the Astropy cosmology API namespace.
         """
         import cosmology.compat.astropy
 
-        return cast(CosmologyAPINamespace, cosmology.compat.astropy)
+        return cast(CosmologyNamespace, cosmology.compat.astropy)
 
     @property
     def name(self) -> str | None:
