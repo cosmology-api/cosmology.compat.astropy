@@ -8,7 +8,7 @@ from typing import TYPE_CHECKING
 import astropy.units as u
 import numpy as np
 
-from cosmology.api import BackgroundCosmologyWrapperAPI
+from cosmology.api import BackgroundCosmologyWrapper
 from cosmology.compat.astropy.core import AstropyCosmology
 
 if TYPE_CHECKING:
@@ -34,7 +34,7 @@ _MPC3_SR_UNITS = _MPC3_UNITS / u.sr
 @dataclass(frozen=True)
 class AstropyBackgroundCosmology(
     AstropyCosmology,
-    BackgroundCosmologyWrapperAPI["NDFloating"],
+    BackgroundCosmologyWrapper["NDFloating"],
 ):
     """The Cosmology API wrapper for :mod:`astropy.cosmology.Cosmology`."""
 
