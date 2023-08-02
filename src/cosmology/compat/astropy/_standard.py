@@ -45,3 +45,4 @@ class StandardCosmologyWrapper(
     """The Cosmology API wrapper for :class:`~astropy.cosmology.FLRW`."""
 
     cosmo: FLRW
+    """The underlying :class:`~astropy.cosmology.FLRW` instance."""

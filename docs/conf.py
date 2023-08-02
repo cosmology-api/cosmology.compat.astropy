@@ -54,9 +54,13 @@ highlight_language = "python3"
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    "sphinx.ext.autodoc",
     "sphinx.ext.autosummary",
+    "sphinx.ext.coverage",
     "sphinx.ext.doctest",
     "sphinx.ext.intersphinx",
+    # "sphinx.ext.napoleon",
+    "sphinx.ext.viewcode",
     "numpydoc",
     "sphinx_copybutton",
     "sphinx_ext_autosummary_context",
@@ -130,12 +134,14 @@ autodoc_default_options = {
 }
 
 
-add_module_names = True
+add_module_names = False
+# autodoc_member_order = "bysource"
 
-# autodoc_class_signature = "separated"
+
+# -- autosummary extension -------------------------------------------------------
 
 autosummary_generate = True
-# autodoc_member_order = "bysource"
+autosummary_ignore_module_all = False
 
 
 # -- numpydoc extension ------------------------------------------------------

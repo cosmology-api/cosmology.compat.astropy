@@ -11,8 +11,16 @@ that accepts a `Cosmology API`_ cosmology.
 
 The two components of this module are:
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   cosmology.compat.astropy <self>
+
 .. autosummary::
    :nosignatures:
+   :toctree: api
+   :caption: API
 
    StandardCosmologyWrapper
    constants
@@ -66,15 +74,6 @@ which now works with the above function.
 
     >>> flat_angular_diameter_distance(planck18, z)
     <Quantity [393.2415434 , 702.98158286, 948.2358979 ] Mpc>
-
-
-.. toctree::
-   :hidden:
-   :maxdepth: 1
-
-   cosmology.compat.astropy <self>
-   constants <api/cosmology.compat.astropy.constants>
-   StandardCosmologyWrapper <api/cosmology.compat.astropy.StandardCosmologyWrapper>
 
 
 Contributors
