@@ -33,6 +33,7 @@
   ]
   test = [
     "coverage[toml]",
+    "hypothesis",
     "numpy>=1.20",
     "pytest",
     "pytest-cov",
