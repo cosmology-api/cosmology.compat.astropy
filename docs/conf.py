@@ -18,7 +18,7 @@ sys.path.append(os.path.abspath("../src"))
 # -- Project information -----------------------------------------------------
 
 
-def read_pyproject():
+def read_pyproject() -> tuple[str, str]:
     """Get author information from package metadata."""
     with open(os.path.abspath("../pyproject.toml"), "rb") as f:
         toml = tomli.load(f)
@@ -77,6 +77,8 @@ rst_epilog = """
 .. |author| replace:: {author}
 
 .. _Python: http://www.python.org
+
+.. _Cosmology API: https://cosmology.readthedocs.io/projects/api/en/latest/
 """
 
 intersphinx_mapping = {

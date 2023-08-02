@@ -22,4 +22,7 @@ if TYPE_CHECKING:
 
 
 G: Quantity = _G.to("pc km2 / (Msun s2)")
+"""Gravitational constant G in pc km2 s-2 Msol-1."""
+
 c: Quantity = _c.to("km / s")
+"""Speed of light in km s-1."""

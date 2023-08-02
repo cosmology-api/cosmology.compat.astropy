@@ -22,7 +22,7 @@
     "Programming Language :: Python :: 3",
   ]
   dependencies = [
-    "cosmology.api @ git+https://github.com/cosmology-api/cosmology-api.git",
+    "cosmology.api>=0.1.0",
     "astropy>=5.0",
     "scipy>=1.5",
     "typing_extensions>=3.7.4.2",
@@ -40,6 +40,7 @@
     "sybil",
   ]
   docs = [
+    "astropy",
     "furo",
     "matplotlib",
     "numpydoc",
@@ -122,6 +123,10 @@ where = ["src"]
       "docs/*",
     ]
     ignore_errors = true
+
+  [[tool.mypy.overrides]]
+    module="cosmology.api.*"
+    ignore_missing_imports = true
 
   [[tool.mypy.overrides]]
     module=[
