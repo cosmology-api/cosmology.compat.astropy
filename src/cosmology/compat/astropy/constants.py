@@ -5,6 +5,7 @@ Note that :mod:`astropy` constants have astropy units.
 From the :mod:`cosmology.api`, the list of required constants is:
 
 - G: Gravitational constant G in pc km2 s-2 Msol-1.
+- c: Speed of light in km s-1.
 """
 
 from __future__ import annotations

@@ -5,7 +5,7 @@
   readme = "README.rst"
   requires-python = ">=3.9"
   license = {file = "LICENSE.txt"}
-  keywords = ["cosmology", "API"]
+  keywords = ["cosmology", "API", "astropy"]
   authors = [
     {name = "Nathaniel Starkman", email = "n.starkman@mail.utoronto.ca"},
     {name = "Nicolas Tessore", email = "n.tessore@ucl.ac.uk"}
@@ -33,22 +33,20 @@
   ]
   test = [
     "coverage[toml]",
-    "numpy>=1.18",
+    "numpy>=1.20",
     "pytest",
-    "pytest-astropy",
+    "pytest-cov",
+    "sybil",
   ]
   docs = [
     "furo",
-    "graphviz",
-    "IPython",
-    "jupyter_client",
     "matplotlib",
-    "nbsphinx",
-    "pydata-sphinx-theme",
+    "numpydoc",
+    "pytest",
     "sphinx",
-    "sphinx-astropy",
-    "sphinxcontrib.bibtex < 3.0.0",
-    "tomlkit",
+    "sphinx-copybutton",
+    "sybil",
+    "tomli",
   ]
 
 [project.urls]
@@ -130,6 +128,7 @@ where = ["src"]
       "astropy.*",
       "numpy.*",
       "scipy.*",
+      "sybil.*",
       "tomli.*"
     ]
     ignore_missing_imports = true

@@ -58,13 +58,18 @@ highlight_language = "python3"
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    "sphinx.ext.autodoc",
+    "sphinx.ext.autosectionlabel",
     "sphinx.ext.autosummary",
+    "sphinx.ext.coverage",
     "sphinx.ext.doctest",
+    "sphinx.ext.extlinks",
+    "sphinx.ext.graphviz",
+    "sphinx.ext.inheritance_diagram",
     "sphinx.ext.intersphinx",
-    "sphinx_automodapi.automodapi",
+    "sphinx.ext.mathjax",
     "matplotlib.sphinxext.plot_directive",
     "numpydoc",
-    "pytest_doctestplus.sphinx.doctestplus",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
