@@ -42,6 +42,6 @@ class StandardCosmologyWrapper(
     CriticalDensity,
     DistanceMeasures,
 ):
-    """The Cosmology API wrapper for :mod:`astropy.cosmology.Cosmology`."""
+    """The Cosmology API wrapper for :class:`astropy.cosmology.FLRW`."""
 
     cosmo: FLRW

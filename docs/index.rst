@@ -2,7 +2,22 @@
 The Cosmology API Astropy Compatability Layer
 #############################################
 
-Cosmology API Compatability Layer for Astropy_.
+.. currentmodule:: cosmology.compat.astropy
+
+.. autosummary::
+   :nosignatures:
+
+   StandardCosmologyWrapper
+   constants
+
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   cosmology.compat.astropy <self>
+   constants <api/cosmology.compat.astropy.constants>
+   StandardCosmologyWrapper <api/cosmology.compat.astropy.StandardCosmologyWrapper>
 
 
 Contributors
