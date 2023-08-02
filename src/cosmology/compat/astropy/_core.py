@@ -4,12 +4,10 @@ from __future__ import annotations
 
 from contextlib import suppress
 from dataclasses import dataclass
-from typing import Any, Callable, Union, cast
+from typing import TYPE_CHECKING, Any, Callable, Union, cast
 
 from astropy.cosmology import Cosmology as AstropyCosmology  # noqa: TCH002
 from astropy.units import Quantity
-from numpy import floating
-from numpy.typing import NDArray
 from typing_extensions import TypeAlias  # noqa: TCH002
 
 from cosmology.api import CosmologyNamespace
@@ -17,9 +15,13 @@ from cosmology.api import CosmologyWrapper as CosmologyWrapperAPI
 
 __all__: list[str] = []
 
+if TYPE_CHECKING:
+    from numpy import floating
+    from numpy.typing import NDArray
 
-NDFloating: TypeAlias = NDArray[floating[Any]]
-InputT: TypeAlias = Union[Quantity, NDFloating, float]
+    NDFloating: TypeAlias = NDArray[floating[Any]]
+
+InputT: TypeAlias = Union[Quantity, "NDFloating", float]
 
 ################################################################################
 
