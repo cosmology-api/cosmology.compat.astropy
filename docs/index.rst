@@ -31,7 +31,7 @@ Quick Start
 
 We can write a function that accepts any `Cosmology API`_ cosmology...
 
-.. invisible-code-block: python
+.. testsetup:: python
 
     from cosmology.api._array_api import Array
 
