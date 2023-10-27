@@ -133,9 +133,7 @@ autodoc_default_options = {
     "show-inheritance": True,
 }
 
-
 add_module_names = False
-# autodoc_member_order = "bysource"
 
 
 # -- autosummary extension -------------------------------------------------------

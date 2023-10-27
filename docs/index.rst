@@ -1,5 +1,5 @@
 #############################################
-The Cosmology API Astropy Compatability Layer
+The Cosmology API Astropy Compatibility Layer
 #############################################
 
 .. currentmodule:: cosmology.compat.astropy
