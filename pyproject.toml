@@ -5,7 +5,7 @@
   readme = "README.rst"
   requires-python = ">=3.9"
   license = {file = "LICENSE.txt"}
-  keywords = ["cosmology", "API"]
+  keywords = ["cosmology", "API", "astropy"]
   authors = [
     {name = "Nathaniel Starkman", email = "n.starkman@mail.utoronto.ca"},
     {name = "Nicolas Tessore", email = "n.tessore@ucl.ac.uk"}
@@ -22,7 +22,7 @@
     "Programming Language :: Python :: 3",
   ]
   dependencies = [
-    "cosmology.api @ git+https://github.com/cosmology-api/cosmology-api.git",
+    "cosmology.api>=0.1.0",
     "astropy>=5.0",
     "scipy>=1.5",
     "typing_extensions>=3.7.4.2",
@@ -33,27 +33,27 @@
   ]
   test = [
     "coverage[toml]",
-    "numpy>=1.18",
+    "hypothesis",
+    "numpy>=1.20",
     "pytest",
-    "pytest-astropy",
+    "pytest-cov",
+    "sybil",
   ]
   docs = [
+    "astropy",
     "furo",
-    "graphviz",
-    "IPython",
-    "jupyter_client",
     "matplotlib",
-    "nbsphinx",
-    "pydata-sphinx-theme",
+    "numpydoc",
+    "pytest",
     "sphinx",
-    "sphinx-astropy",
-    "sphinxcontrib.bibtex < 3.0.0",
-    "tomlkit",
+    "sphinx-copybutton",
+    "sybil",
+    "tomli",
   ]
 
 [project.urls]
   homepage = "https://cosmology.readthedocs.org/astropy"
-  repository = "https://github.com/cosmology-api/cosmology-compat-astropy"
+  repository = "https://github.com/cosmology-api/cosmology.compat.astropy"
   documentation = "https://cosmology.readthedocs.org/astropy"
 
 
@@ -108,17 +108,20 @@ where = ["src"]
   mypy_path = "$MYPY_CONFIG_FILE_DIR/src"
 
   strict = true
-  disallow_subclassing_any = false
+  disallow_subclassing_any = true
   disallow_untyped_defs = true
   no_implicit_optional = true
   warn_return_any = true
   warn_redundant_casts = true
   warn_unused_configs = true
   warn_unreachable = true
-  exclude = '''(^|/)tests/'''
+  exclude = '''(^|/)tests/|(^/)docs/|(^/)conftest\.py'''
 
   [[tool.mypy.overrides]]
-    module = "tests/*"
+    module = [
+      "tests/*",
+      "docs/*",
+    ]
     ignore_errors = true
 
   [[tool.mypy.overrides]]
@@ -126,15 +129,13 @@ where = ["src"]
     ignore_missing_imports = true
 
   [[tool.mypy.overrides]]
-    module="astropy.*"
-    ignore_missing_imports = true
-
-  [[tool.mypy.overrides]]
-    module="numpy.*"
-    ignore_missing_imports = true
-
-  [[tool.mypy.overrides]]
-    module="tomli.*"
+    module=[
+      "astropy.*",
+      "numpy.*",
+      "scipy.*",
+      "sybil.*",
+      "tomli.*"
+    ]
     ignore_missing_imports = true
 
 
@@ -146,11 +147,15 @@ select = ["ALL"]
 ignore = [
   "ANN101", "ANN102", "ANN401",
   "ARG001", "ARG002",
+  "COM812",  # trailing-comma-missing
   "D105", "D107", "D203", "D213", "D401",
   "FBT003",
   "N802",
   "PD",
   "RET505", "RET506", "RET507",
+
+  # flake8-self
+  "SLF001",  # Private member accessed
 
   # flake8-fixme (FIX)
   "FIX002",  # Line contains TODO
@@ -161,7 +166,7 @@ ignore = [
 ]
 
 [tool.ruff.per-file-ignores]
-"test_*.py" = ["ANN", "D", "N801", "N806", "S101"]
+"test_*.py" = ["ANN", "D", "N801", "N806", "S101", "SLF001"]
 "docs/*.py" = ["INP001"]
 
 [tool.ruff.isort]
@@ -172,4 +177,7 @@ known-third-party = [
 ]
 known-first-party = [
   "cosmology",
+]
+known-local-folder = [
+  "cosmology.compat.astropy",
 ]

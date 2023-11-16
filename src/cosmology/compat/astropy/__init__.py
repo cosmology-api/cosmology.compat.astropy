@@ -3,8 +3,8 @@
 This library provides wrappers for Astropy cosmology objects to be compatible
 with the Cosmology API. The available wrappers are:
 
-- :class:`.AstropyCosmology`: the Cosmology API wrapper for
-  :mod:`astropy.cosmology.Cosmology`.
+- :class:`cosmology.compat.astropy.StandardCosmologyWrapper`: the Cosmology API
+     wrapper for :class:`astropy.cosmology.FLRW` and subclasses.
 
 
 There are the following required objects for a Cosmology-API compatible library:
@@ -14,15 +14,11 @@ There are the following required objects for a Cosmology-API compatible library:
 """
 
 from cosmology.compat.astropy import constants
-from cosmology.compat.astropy.background import AstropyBackgroundCosmology
-from cosmology.compat.astropy.core import AstropyCosmology
-from cosmology.compat.astropy.standard import AstropyStandardCosmology
+from cosmology.compat.astropy._standard import StandardCosmologyWrapper
 
 __all__ = [
     # Cosmology API
     "constants",
     # Wrappers
-    "AstropyCosmology",
-    "AstropyBackgroundCosmology",
-    "AstropyStandardCosmology",
+    "StandardCosmologyWrapper",
 ]
