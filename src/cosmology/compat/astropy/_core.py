@@ -8,7 +8,7 @@ from typing import TYPE_CHECKING, Any, Callable, Union, cast
 
 from astropy.cosmology import Cosmology as AstropyCosmology  # noqa: TCH002
 from astropy.units import Quantity
-from typing_extensions import TypeAlias  # noqa: TCH002
+from typing_extensions import TypeAlias
 
 from cosmology.api import CosmologyNamespace
 from cosmology.api import CosmologyWrapper as CosmologyWrapperAPI
