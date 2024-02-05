@@ -50,6 +50,7 @@ class TemperatureCMB(TemperatureCMBAPI[Quantity, InputT]):
         Returns
         -------
         Quantity
+
         """
         return self.cosmo.Tcmb(z).to(u.K)
 
@@ -75,6 +76,7 @@ class ScaleFactor(ScaleFactorAPI[Quantity, InputT]):
         Returns
         -------
         Quantity
+
         """
         return np.asarray(self.cosmo.scale_factor(z)) << u.one
 
@@ -83,12 +85,10 @@ class ComovingDistanceMeasures(ComovingDistanceMeasuresAPI[Quantity, InputT]):
     cosmo: FLRW
 
     @overload
-    def comoving_distance(self, z: InputT, /) -> Quantity:
-        ...
+    def comoving_distance(self, z: InputT, /) -> Quantity: ...
 
     @overload
-    def comoving_distance(self, z1: InputT, z2: InputT, /) -> Quantity:
-        ...
+    def comoving_distance(self, z1: InputT, z2: InputT, /) -> Quantity: ...
 
     def comoving_distance(self, z1: InputT, z2: InputT | None = None, /) -> Quantity:
         r"""Comoving line-of-sight distance :math:`d_c(z1, z2)` in Mpc.
@@ -107,17 +107,16 @@ class ComovingDistanceMeasures(ComovingDistanceMeasuresAPI[Quantity, InputT]):
         Returns
         -------
         Quantity
+
         """
         z1, z2 = (0.0, z1) if z2 is None else (z1, z2)
         return self.cosmo._comoving_distance_z1z2(z1, z2).to(u.Mpc)
 
     @overload
-    def transverse_comoving_distance(self, z: InputT, /) -> Quantity:
-        ...
+    def transverse_comoving_distance(self, z: InputT, /) -> Quantity: ...
 
     @overload
-    def transverse_comoving_distance(self, z1: InputT, z2: InputT, /) -> Quantity:
-        ...
+    def transverse_comoving_distance(self, z1: InputT, z2: InputT, /) -> Quantity: ...
 
     def transverse_comoving_distance(
         self, z1: InputT, z2: InputT | None = None, /
@@ -140,17 +139,16 @@ class ComovingDistanceMeasures(ComovingDistanceMeasuresAPI[Quantity, InputT]):
         Returns
         -------
         Quantity
+
         """
         z1, z2 = (0.0, z1) if z2 is None else (z1, z2)
         return self.cosmo._comoving_transverse_distance_z1z2(z1, z2).to(u.Mpc)
 
     @overload
-    def comoving_volume(self, z: InputT, /) -> Quantity:
-        ...
+    def comoving_volume(self, z: InputT, /) -> Quantity: ...
 
     @overload
-    def comoving_volume(self, z1: InputT, z2: InputT, /) -> Quantity:
-        ...
+    def comoving_volume(self, z1: InputT, z2: InputT, /) -> Quantity: ...
 
     def comoving_volume(self, z1: InputT, z2: InputT | None = None, /) -> Quantity:
         r"""Comoving volume in cubic Mpc.
@@ -170,6 +168,7 @@ class ComovingDistanceMeasures(ComovingDistanceMeasuresAPI[Quantity, InputT]):
         Returns
         -------
         Quantity
+
         """
         z1, z2 = (0.0, z1) if z2 is None else (z1, z2)
         return (self.cosmo.comoving_volume(z2) - self.cosmo.comoving_volume(z1)).to(
@@ -197,6 +196,7 @@ class ComovingDistanceMeasures(ComovingDistanceMeasuresAPI[Quantity, InputT]):
         -------
         Quantity
             The differential comoving volume :math:`dV_c` in Mpc3 sr-1.
+
         """
         return self.cosmo.differential_comoving_volume(z).to(_MPC3_SR_UNITS)
 
@@ -207,12 +207,10 @@ class ProperDistanceMeasures(ProperDistanceMeasuresAPI[Quantity, InputT]):
     cosmo: FLRW
 
     @overload
-    def proper_distance(self, z: InputT, /) -> Quantity:
-        ...
+    def proper_distance(self, z: InputT, /) -> Quantity: ...
 
     @overload
-    def proper_distance(self, z1: InputT, z2: InputT, /) -> Quantity:
-        ...
+    def proper_distance(self, z1: InputT, z2: InputT, /) -> Quantity: ...
 
     def proper_distance(self, z1: InputT, z2: InputT | None = None, /) -> Quantity:
         r"""Proper distance :math:`d` in Mpc.
@@ -233,18 +231,17 @@ class ProperDistanceMeasures(ProperDistanceMeasuresAPI[Quantity, InputT]):
         -------
         Quantity
             The proper distance :math:`d` in Mpc.
+
         """
         d2 = self.cosmo.scale_factor(z2) * self.comoving_distance(z2)
         d1 = self.cosmo.scale_factor(z1) * self.comoving_distance(z1)
         return d2 - d1
 
     @overload
-    def proper_time(self, z: InputT, /) -> Quantity:
-        ...
+    def proper_time(self, z: InputT, /) -> Quantity: ...
 
     @overload
-    def proper_time(self, z1: InputT, z2: InputT, /) -> Quantity:
-        ...
+    def proper_time(self, z1: InputT, z2: InputT, /) -> Quantity: ...
 
     def proper_time(self, z1: InputT, z2: InputT | None = None, /) -> Quantity:
         r"""Proper time :math:`t` in Gyr.
@@ -264,6 +261,7 @@ class ProperDistanceMeasures(ProperDistanceMeasuresAPI[Quantity, InputT]):
         -------
         Quantity
             The proper time :math:`t` in Gyr.
+
         """
         return (self.proper_distance(z1, z2) / self.constants.c).to(u.Gyr)
 
@@ -290,12 +288,10 @@ class LookbackDistanceMeasures(
         )
 
     @overload
-    def lookback_distance(self, z: InputT, /) -> Quantity:
-        ...
+    def lookback_distance(self, z: InputT, /) -> Quantity: ...
 
     @overload
-    def lookback_distance(self, z1: InputT, z2: InputT, /) -> Quantity:
-        ...
+    def lookback_distance(self, z1: InputT, z2: InputT, /) -> Quantity: ...
 
     def lookback_distance(self, z1: InputT, z2: InputT | None = None, /) -> Quantity:
         r"""Lookback distance :math:`d_T` in Mpc.
@@ -315,16 +311,15 @@ class LookbackDistanceMeasures(
         -------
         Quantity
             The lookback distance :math:`d_T` in Mpc.
+
         """
         return (self.lookback_time(z1, z2) * self.constants.c).to(u.Mpc)
 
     @overload
-    def lookback_time(self, z: InputT, /) -> Quantity:
-        ...
+    def lookback_time(self, z: InputT, /) -> Quantity: ...
 
     @overload
-    def lookback_time(self, z1: InputT, z2: InputT, /) -> Quantity:
-        ...
+    def lookback_time(self, z1: InputT, z2: InputT, /) -> Quantity: ...
 
     def lookback_time(self, z1: InputT, z2: InputT | None = None, /) -> Quantity:
         """Lookback time in Gyr.
@@ -344,6 +339,7 @@ class LookbackDistanceMeasures(
         Returns
         -------
         Quantity
+
         """
         z1, z2 = (0.0, z1) if z2 is None else (z1, z2)
         return (
@@ -382,6 +378,7 @@ class DistanceMeasures(
         Returns
         -------
         Quantity
+
         """
         return self.cosmo.age(z).to(u.Gyr)
 
@@ -389,12 +386,10 @@ class DistanceMeasures(
     # Angular diameter distance
 
     @overload
-    def angular_diameter_distance(self, z: InputT, /) -> Quantity:
-        ...
+    def angular_diameter_distance(self, z: InputT, /) -> Quantity: ...
 
     @overload
-    def angular_diameter_distance(self, z1: InputT, z2: InputT, /) -> Quantity:
-        ...
+    def angular_diameter_distance(self, z1: InputT, z2: InputT, /) -> Quantity: ...
 
     def angular_diameter_distance(
         self, z1: InputT, z2: InputT | None = None, /
@@ -422,6 +417,7 @@ class DistanceMeasures(
         .. [1] Weinberg, 1972, pp 420-424; Weedman, 1986, pp 421-424.
         .. [2] Weedman, D. (1986). Quasar astronomy, pp 65-67.
         .. [3] Peebles, P. (1993). Principles of Physical Cosmology, pp 325-327.
+
         """
         z1, z2 = (0.0, z1) if z2 is None else (z1, z2)
         return self.cosmo.angular_diameter_distance_z1z2(z1, z2).to(u.Mpc)
@@ -450,5 +446,6 @@ class DistanceMeasures(
         References
         ----------
         .. [1] Weinberg, 1972, pp 420-424; Weedman, 1986, pp 60-62.
+
         """
         return (z1 + 1.0) * self.transverse_comoving_distance(z1, z2).to(u.Mpc)

@@ -61,6 +61,7 @@ class CurvatureComponent(CurvatureComponentAPI[Quantity, InputT]):
         Returns
         -------
         Array
+
         """
         return np.asarray(self.cosmo.Ok(z)) << u.one
 
@@ -91,6 +92,7 @@ class MatterComponent(MatterComponentAPI[Quantity, InputT]):
         -----
         This does not include neutrinos, even if non-relativistic at the
         redshift of interest; see `Omega_nu`.
+
         """
         return np.asarray(self.cosmo.Om(z)) << u.one
 
@@ -119,6 +121,7 @@ class BaryonComponent(BaryonComponentAPI[Quantity, InputT]):
         Returns
         -------
         Array
+
         """
         try:
             return np.asarray(self.cosmo.Ob(z)) << u.one
@@ -157,6 +160,7 @@ class NeutrinoComponent(NeutrinoComponentAPI[Quantity, InputT]):
         Returns
         -------
         Array
+
         """
         return np.asarray(self.cosmo.Onu(z)) << u.one
 
@@ -182,6 +186,7 @@ class DarkEnergyComponent(DarkEnergyComponentAPI[Quantity, InputT]):
         Returns
         -------
         Array
+
         """
         return np.asarray(self.cosmo.Ode(z)) << u.one
 
@@ -218,6 +223,7 @@ class DarkMatterComponent(DarkMatterComponentAPI[Quantity, InputT]):
         -----
         This does not include neutrinos, even if non-relativistic at the
         redshift of interest.
+
         """
         try:
             return np.asarray(self.cosmo.Odm(z)) << u.one
@@ -246,5 +252,6 @@ class PhotonComponent(PhotonComponentAPI[Quantity, InputT]):
         Returns
         -------
         Array
+
         """
         return np.asarray(self.cosmo.Ogamma(z)) << u.one
