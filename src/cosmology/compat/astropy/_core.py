@@ -47,6 +47,7 @@ class CosmologyWrapper(CosmologyWrapperAPI[Quantity, InputT]):
         -------
         `cosmology.api.CosmologyNamespace`
             An object representing the Astropy cosmology API namespace.
+
         """
         import cosmology.compat.astropy as namespace
 

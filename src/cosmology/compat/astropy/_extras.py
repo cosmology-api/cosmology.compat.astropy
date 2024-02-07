@@ -72,6 +72,7 @@ class HubbleParameter:
         Returns
         -------
         Array
+
         """  # noqa: D402
         return self.cosmo.H(z).to(_H0_UNITS)
 
@@ -86,5 +87,6 @@ class HubbleParameter:
         Returns
         -------
         Array
+
         """
         return np.asarray(self.cosmo.efunc(z)) << u.one
