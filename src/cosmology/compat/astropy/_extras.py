@@ -73,7 +73,7 @@ class HubbleParameter:
         -------
         Array
 
-        """  # noqa: D402
+        """
         return self.cosmo.H(z).to(_H0_UNITS)
 
     def H_over_H0(self, z: Quantity | NDFloating | float, /) -> Quantity:
