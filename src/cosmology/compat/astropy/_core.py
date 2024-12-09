@@ -6,7 +6,7 @@ from contextlib import suppress
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Any, Callable, Union, cast
 
-from astropy.cosmology import Cosmology as AstropyCosmology  # noqa: TCH002
+from astropy.cosmology import Cosmology as AstropyCosmology  # noqa: TC002
 from astropy.units import Quantity
 from typing_extensions import TypeAlias
 

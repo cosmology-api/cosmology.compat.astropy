@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from astropy.cosmology import FLRW  # noqa: TCH002
+from astropy.cosmology import FLRW  # noqa: TC002
 
 from cosmology.compat.astropy._components import (
     BaryonComponent,
