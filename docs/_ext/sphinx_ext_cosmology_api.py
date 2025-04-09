@@ -1,7 +1,10 @@
-# ruff: noqa
+"""Custom Sphinx extension for documenting Cosmology API."""
+
 import sys
-from types import ModuleType
 from inspect import getmembers, getmro
+from types import ModuleType
+from typing import Any
+
 from sphinx.util.inspect import signature, stringify_signature
 
 # get_overloads is a Python 3.11 feature
@@ -15,10 +18,8 @@ import cosmology.compat.astropy
 DOCS_MODULE_NAME = "cosmology.compat.astropy.docs"
 
 
-class cosmo(cosmology.compat.astropy.StandardCosmologyWrapper):
-    """This is a mock cosmology class used for documenting all members
-    of the cosmology.compat.astropy protocols.
-    """
+class cosmo(cosmology.compat.astropy.StandardCosmologyWrapper):  # noqa: N801
+    """Mock cosmology class used for documenting all protocols."""
 
 
 COSMOLOGY_BASES = [cls for cls in getmro(cosmo) if cls is not cosmo]
@@ -58,9 +59,10 @@ def signature_callback(app, what, name, obj, options, sig, return_annotation):
                 )
                 sigs.append(stringify_signature(overload_sig, **kwargs))
             return "\n".join(sigs), None
+    return None
 
 
-def setup(app):
+def setup(app: Any) -> None:
     """Initialise the cosmology.compat.astropy documentation extension."""
     # create a mock `cosmology.compat.astropy.docs` module containing `Cosmology`
     docs_module = ModuleType(DOCS_MODULE_NAME)

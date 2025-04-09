@@ -51,12 +51,12 @@ class CosmologyWrapper(CosmologyWrapperAPI[Quantity, InputT]):
         """
         import cosmology.compat.astropy as namespace
 
-        return cast(CosmologyNamespace, namespace)
+        return cast("CosmologyNamespace", namespace)
 
     @property
     def name(self) -> str | None:
         """The name of the cosmology instance."""
-        return cast(Union[str, None], self.cosmo.name)
+        return cast("Union[str, None]", self.cosmo.name)
 
     # ========================================================================
     # Convenience methods
