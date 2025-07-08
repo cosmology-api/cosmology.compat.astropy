@@ -49,7 +49,7 @@ class CosmologyWrapper(CosmologyWrapperAPI[Quantity, InputT]):
             An object representing the Astropy cosmology API namespace.
 
         """
-        import cosmology.compat.astropy as namespace
+        import cosmology.compat.astropy as namespace  # noqa: PLC0415
 
         return cast("CosmologyNamespace", namespace)
 
