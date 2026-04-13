@@ -22,7 +22,7 @@
     "Programming Language :: Python :: 3",
   ]
   dependencies = [
-    "cosmology.api>=0.1.0",
+    "cosmology.api>=0.3.2",
     "astropy>=5.0",
     "scipy>=1.13.1",
     "typing_extensions>=4.15.0",
