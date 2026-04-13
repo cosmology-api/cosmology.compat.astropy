@@ -4,7 +4,8 @@
   description = "Cosmology API standard compatability library for Astropy"
   readme = "README.rst"
   requires-python = ">=3.9"
-  license = {file = "LICENSE.txt"}
+  license = "BSD-3-Clause"
+  license-files = ["LICENSE.txt"]
   keywords = ["cosmology", "API", "astropy"]
   authors = [
     {name = "Nathaniel Starkman", email = "n.starkman@mail.utoronto.ca"},
