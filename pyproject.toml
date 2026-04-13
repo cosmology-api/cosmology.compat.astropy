@@ -24,7 +24,7 @@
   dependencies = [
     "cosmology.api>=0.1.0",
     "astropy>=5.0",
-    "scipy>=1.5",
+    "scipy>=1.13.1",
     "typing_extensions>=3.7.4.2",
   ]
 
