@@ -1,3 +1,4 @@
+# Copyright (c) 2022, Nathaniel Starkman and Nicolas Tessore
 """Astropy cosmology constants.
 
 Note that :mod:`astropy` constants have astropy units.
