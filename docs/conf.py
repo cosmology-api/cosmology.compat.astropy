@@ -1,3 +1,4 @@
+# Copyright (c) 2022, Nathaniel Starkman and Nicolas Tessore
 """Configuration file for the Sphinx documentation builder.
 
 This file only contains a selection of the most common options. For a full

@@ -1,3 +1,4 @@
+# Copyright (c) 2022, Nathaniel Starkman and Nicolas Tessore
 """The Cosmology API compatability library for Astropy.
 
 This library provides wrappers for Astropy cosmology objects to be compatible

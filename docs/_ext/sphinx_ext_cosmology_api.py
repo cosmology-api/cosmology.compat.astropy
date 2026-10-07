@@ -1,3 +1,4 @@
+# Copyright (c) 2022, Nathaniel Starkman and Nicolas Tessore
 """Custom Sphinx extension for documenting Cosmology API."""
 
 import sys
@@ -40,7 +41,9 @@ def context_callback(app, name, obj, parent, context):
     return extra_context
 
 
-def signature_callback(app, what, name, obj, options, sig, return_annotation):
+def signature_callback(  # noqa: PLR0917
+    app, what, name, obj, options, sig, return_annotation
+):
     """Callback function to provide overloaded signatures."""
     if what in ("function", "method") and callable(obj):
         overloads = get_overloads(obj)

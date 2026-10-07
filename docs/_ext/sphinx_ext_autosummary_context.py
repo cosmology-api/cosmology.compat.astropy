@@ -1,3 +1,4 @@
+# Copyright (c) 2022, Nathaniel Starkman and Nicolas Tessore
 """Monkey-patching autosummary to emit the autosummary-gather-context event."""
 
 from inspect import signature
